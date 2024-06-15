@@ -1,22 +1,15 @@
-import { Inter } from 'next/font/google';
-import '@/styles/globals.css';
+import React from 'react';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-export default function Layout({ children }) {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={inter.variable}>
-        <div className="container mx-auto">
-          {children}
-        </div>
-        <Footer />
-      </body>
-    </html>
+    <div className="layout">
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </div>
   );
 }
+
+export default Layout;

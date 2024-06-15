@@ -1,58 +1,109 @@
 /* src/styles/globals.css */
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background-color: #f0f2f5;
-  color: #333;
+  @apply bg-gray-100 text-gray-800;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.dashboard {
+  @apply flex;
 }
 
-button {
-  cursor: pointer;
+.sidebar {
+  @apply w-1/4 p-4 bg-white shadow-lg;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+.main-content {
+  @apply w-3/4 p-4;
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 400px;
+.account-balance {
+  @apply mb-8;
 }
 
-.modal-close {
-  display: flex;
-  justify-content: flex-end;
+.account-balance h2 {
+  @apply text-4xl font-bold;
 }
 
-.modal-close button {
-  background: none;
-  border: none;
-  font-size: 20px;
+.account-balance p {
+  @apply text-sm text-gray-600;
+}
+
+.account-balance button {
+  @apply mt-4 bg-blue-500 text-white px-4 py-2 rounded;
+}
+
+.recent-transactions {
+  @apply mb-8;
+}
+
+.recent-transactions h3 {
+  @apply text-xl font-semibold mb-4;
+}
+
+.recent-transactions ul {
+  @apply space-y-2;
+}
+
+.recent-transactions li {
+  @apply flex justify-between items-center;
+}
+
+.recent-transactions .positive {
+  @apply text-green-500;
+}
+
+.recent-transactions .negative {
+  @apply text-red-500;
+}
+
+.market-overview {
+  @apply mb-8;
+}
+
+.market-overview h3 {
+  @apply text-xl font-semibold mb-4;
+}
+
+.market-overview table {
+  @apply w-full text-left;
+}
+
+.market-overview th, .market-overview td {
+  @apply py-2;
+}
+
+.market-overview .positive {
+  @apply text-green-500;
+}
+
+.market-overview .negative {
+  @apply text-red-500;
+}
+
+.trade-section h3 {
+  @apply text-xl font-semibold mb-4;
+}
+
+.trade-section form {
+  @apply flex items-center space-x-4;
+}
+
+.trade-section select {
+  @apply border border-gray-300 rounded p-2;
+}
+
+.trade-section button {
+  @apply bg-blue-500 text-white px-4 py-2 rounded;
+}
+
+.market-chart {
+  @apply mb-8;
+}
+
+.market-chart h3 {
+  @apply text-xl font-semibold mb-4;
 }
