@@ -1,39 +1,27 @@
 import React from 'react';
-import { useMarketOverview } from '../services/dataService';
 
 const MarketOverview: React.FC = () => {
-  const { data, error } = useMarketOverview();
-
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  const marketData = [
+    { coin: 'Bitcoin', symbol: 'BTC', price: '$56,789.00', change: '+2.5%', marketCap: '$1.2T' },
+    { coin: 'Ethereum', symbol: 'ETH', price: '$1,789.00', change: '-1.2%', marketCap: '$210B' },
+    { coin: 'USDC', symbol: 'USDC', price: '$1.00', change: '+0.1%', marketCap: '$55B' },
+  ];
 
   return (
-    <div className="market-overview">
-      <h3>Top Cryptocurrencies</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>Change</th>
-            <th>Market Cap</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((coin: any) => (
-            <tr key={coin.id}>
-              <td>
-                {coin.name} ({coin.symbol.toUpperCase()})
-              </td>
-              <td>${coin.current_price.toFixed(2)}</td>
-              <td className={coin.price_change_percentage_24h > 0 ? 'positive' : 'negative'}>
-                {coin.price_change_percentage_24h.toFixed(2)}%
-              </td>
-              <td>${coin.market_cap.toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="p-4 bg-white shadow rounded-lg">
+      <h3 className="text-xl font-semibold mb-4">Market Overview</h3>
+      <ul>
+        {marketData.map((data, index) => (
+          <li key={index} className="mb-2 p-2 border rounded-lg">
+            <span className="block text-lg">{data.coin} ({data.symbol})</span>
+            <span className="block">{data.price}</span>
+            <span className={`block ${data.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+              {data.change}
+            </span>
+            <span className="block text-gray-500">{data.marketCap}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

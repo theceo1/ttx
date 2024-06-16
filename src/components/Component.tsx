@@ -1,6 +1,7 @@
+import { useSession, signIn, signOut } from "next-auth/react";
 import Link from 'next/link';
 import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/Table';
@@ -10,6 +11,8 @@ import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from '@
 import Modal from '@/components/Modal';
 
 const Component = () => {
+  const { data: session } = useSession();
+
   const [data, setData] = useState({
     balance: "$12,345.67",
     btcBalance: "≈ 1.23 BTC",
@@ -46,9 +49,25 @@ const Component = () => {
     setData(refreshedData);
   };
 
+  if (!session) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+          <h1 className="text-2xl font-bold mb-6">You are not signed in</h1>
+          <button
+            onClick={() => signIn()}
+            className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col h-screen">
-      <header className="bg-gray-900 text-white py-4 px-6 flex items-center justify-between">
+    <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
+      <header className="bg-gray-900 text-white py-4 px-6 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-4">
           <Link href="/" className="text-2xl font-bold">
             trustBank
@@ -62,12 +81,11 @@ const Component = () => {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm">Sign In</Button>
-          <Button size="sm">Sign Up</Button>
+          <Button variant="outline" size="sm" onClick={() => signOut()}>Sign Out</Button>
         </div>
       </header>
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-[300px_1fr] bg-gray-100">
-        <div className="bg-white border-r border-gray-200 p-6 md:p-6 lg:p-8">
+      <main className="flex-1 grid grid-cols-1 md:grid-cols-[300px_1fr]">
+        <div className="bg-white border-r border-gray-200 p-6 md:p-6 lg:p-8 shadow-md">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <h2 className="text-lg font-bold">Dashboard</h2>
@@ -90,7 +108,7 @@ const Component = () => {
             </div>
           </div>
           <div className="grid gap-4">
-            <Card className="dark:bg-gray-800 dark:text-gray-300">
+            <Card className="dark:bg-gray-800 dark:text-gray-300 shadow-md">
               <CardHeader>
                 <CardTitle className="text-sm">Account Balance</CardTitle>
               </CardHeader>
@@ -102,7 +120,7 @@ const Component = () => {
                 <Button variant="outline" size="sm">Deposit</Button>
               </CardContent>
             </Card>
-            <Card className="dark:bg-gray-800 dark:text-gray-300">
+            <Card className="dark:bg-gray-800 dark:text-gray-300 shadow-md">
               <CardHeader>
                 <CardTitle className="text-sm">Recent Transactions</CardTitle>
               </CardHeader>
@@ -172,7 +190,7 @@ const Component = () => {
             </div>
           </div>
           <div className="grid gap-4">
-            <Card className="dark:bg-gray-800 dark:text-gray-300">
+            <Card className="dark:bg-gray-800 dark:text-gray-300 shadow-md">
               <CardHeader>
                 <CardTitle className="text-sm">Top Cryptocurrencies</CardTitle>
               </CardHeader>
@@ -210,7 +228,7 @@ const Component = () => {
                 </Table>
               </CardContent>
             </Card>
-            <Card className="dark:bg-gray-800 dark:text-gray-300">
+            <Card className="dark:bg-gray-800 dark:text-gray-300 shadow-md">
               <CardHeader>
                 <CardTitle className="text-sm">Trade</CardTitle>
               </CardHeader>

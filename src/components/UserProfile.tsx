@@ -8,13 +8,13 @@ const UserProfile: React.FC = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="user-profile">
-      <img src={data.avatar} alt={`${data.name}'s avatar`} />
-      <h2>{data.name}</h2>
-      <p>{data.email}</p>
-      <button>Edit Profile</button>
+    <div className="p-4 bg-white shadow rounded-lg">
+      <img className="w-16 h-16 rounded-full mx-auto" src={data.avatar} alt={`${data.name}'s avatar`} />
+      <h2 className="text-center text-xl font-semibold mt-4">{data.name}</h2>
+      <p className="text-center text-gray-600">{data.email}</p>
+      <button className="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Edit Profile</button>
     </div>
   );
-}
+};
 
 export default UserProfile;

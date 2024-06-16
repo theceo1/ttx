@@ -1,56 +1,21 @@
-import axios from 'axios';
+const WebSocket = require('ws');
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const wss = new WebSocket.Server({ port: 8080 });
 
-export const fetchAccountBalance = async () => {
-  const response = await axios.get(`${API_BASE_URL}/account-balance`);
-  return response.data;
-};
+wss.on('connection', (ws) => {
+  console.log('Client connected');
 
-export const fetchRecentTransactions = async () => {
-  const response = await axios.get(`${API_BASE_URL}/recent-transactions`);
-  return response.data;
-};
+  ws.on('message', (message) => {
+    console.log(`Received: ${message}`);
+    // Broadcast the message to all clients
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    });
+  });
 
-export const fetchMarketOverview = async () => {
-  const response = await axios.get(`${API_BASE_URL}/market-overview`);
-  return response.data;
-};
-
-export const fetchUserProfile = async () => {
-  const response = await axios.get(`${API_BASE_URL}/user-profile`);
-  return response.data;
-};
-
-export const fetchNotifications = async () => {
-  const response = await axios.get(`${API_BASE_URL}/notifications`);
-  return response.data;
-};
-import axios from 'axios';
-
-const API_BASE_URL = 'http://localhost:5001/api';
-
-export const fetchAccountBalance = async () => {
-  const response = await axios.get(`${API_BASE_URL}/account-balance`);
-  return response.data;
-};
-
-export const fetchRecentTransactions = async () => {
-  const response = await axios.get(`${API_BASE_URL}/recent-transactions`);
-  return response.data;
-};
-
-export const fetchMarketOverview = async () => {
-  const response = await axios.get(`${API_BASE_URL}/market-overview`);
-  return response.data;
-};
-
-export const fetchUserProfile = async () => {
-  const response = await axios.get(`${API_BASE_URL}/user-profile`);
-  return response.data;
-};
-
-export const fetchNotifications = async () => {
-  const response = await axios.get(`${API_BASE_URL}/notifications`);
-  return response.data;
-};
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+});

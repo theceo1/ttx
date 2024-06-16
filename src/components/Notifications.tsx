@@ -1,22 +1,35 @@
-import React from 'react';
-import { useNotifications } from '../services/dataService';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Notifications: React.FC = () => {
-  const { data, error } = useNotifications();
+  const [notifications, setNotifications] = useState([]);
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('/api/notifications');
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Failed to fetch notifications', error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
 
   return (
-    <div className="notifications">
-      <h3>Notifications</h3>
+    <div className="p-4 bg-white shadow rounded-lg">
+      <h3 className="text-xl font-semibold mb-4">Notifications</h3>
       <ul>
-        {data.map((notification: any, index: number) => (
-          <li key={index}>{notification.message}</li>
+        {notifications.map((notification: any) => (
+          <li key={notification.id} className="mb-2 p-2 border rounded-lg">
+            <span className="block text-lg">{notification.message}</span>
+            <span className="block text-gray-500">{notification.timestamp}</span>
+          </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default Notifications;

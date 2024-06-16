@@ -107,3 +107,107 @@ body {
 .market-chart h3 {
   @apply text-xl font-semibold mb-4;
 }
+
+/* Add these styles to your existing globals.css file */
+
+/* Header Styles */
+header {
+  background-color: #1a1a2e;
+  color: #eaeaea;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+header nav a {
+  color: #eaeaea;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+header nav a:hover {
+  color: #ff6f61;
+}
+
+header .auth-buttons button {
+  margin-left: 10px;
+}
+
+/* Main Content Styles */
+main {
+  padding: 40px;
+  background-color: #f4f4f9;
+  min-height: calc(100vh - 80px);
+}
+
+main .content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  main .grid {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+/* Card Styles */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  font-size: 16px;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button.outline {
+  border: 1px solid #ff6f61;
+  background-color: transparent;
+  color: #ff6f61;
+}
+
+button.outline:hover {
+  background-color: #ff6f61;
+  color: #fff;
+}
+
+button.primary {
+  background-color: #ff6f61;
+  color: #fff;
+}
+
+button.primary:hover {
+  background-color: #e65c54;
+}
