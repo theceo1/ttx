@@ -1,7 +1,7 @@
 // src/components/Vision.tsx
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Button from '@/components/ui/Button';
 
 export default function Vision() {
   return (

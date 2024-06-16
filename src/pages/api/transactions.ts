@@ -1,30 +1,26 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import { MongoClient } from 'mongodb';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import dotenv from 'dotenv';
 
-const uri = 'your_mongodb_connection_string'; // Replace with your MongoDB connection string
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error('Please add your Mongo URI to .env.local');
+}
+
 const client = new MongoClient(uri);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return res.status(401).json({ message: 'Not authenticated' });
-  }
-
   try {
     await client.connect();
-    const db = client.db('your_database_name'); // Replace with your database name
-    const transactionsCollection = db.collection('transactions');
-
-    if (req.method === 'GET') {
-      const transactions = await transactionsCollection.find({ userId: session.user.id }).toArray();
-      res.status(200).json(transactions);
-    } else {
-      res.status(405).json({ message: 'Method not allowed' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch transactions', error });
+    const db = client.db('trustbank');
+    // Your database operations here
+    res.status(200).json({ message: 'Success' });
+  } catch (e) {
+    console.error('MongoDB connection error:', e);
+    res.status(500).json({ error: 'MongoDB connection error' });
   } finally {
     await client.close();
   }

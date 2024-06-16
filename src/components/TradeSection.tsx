@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Box, Heading, Select, Input, Button } from '@chakra-ui/react';
 
 const TradeSection: React.FC = () => {
   const [crypto, setCrypto] = useState('btc');
@@ -38,35 +39,39 @@ const TradeSection: React.FC = () => {
   };
 
   return (
-    <div className="p-4 bg-white shadow rounded-lg">
-      <h3 className="text-xl font-semibold mb-4">Trade</h3>
-      <select value={crypto} onChange={(e) => setCrypto(e.target.value)} className="w-full p-2 mb-4 border rounded">
+    <Box p={4} bg="white" shadow="md" borderRadius="lg">
+      <Heading as="h3" size="md" mb={4}>Trade</Heading>
+      <Select value={crypto} onChange={(e) => setCrypto(e.target.value)} mb={4}>
         <option value="btc">Bitcoin (BTC)</option>
         <option value="eth">Ethereum (ETH)</option>
         <option value="usdc">USDC</option>
-      </select>
-      <input
+      </Select>
+      <Input
         type="number"
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
         placeholder="Amount"
-        className="w-full p-2 mb-4 border rounded"
+        mb={4}
       />
-      <input
+      <Input
         type="number"
         value={price}
         onChange={(e) => setPrice(Number(e.target.value))}
         placeholder="Price"
-        className="w-full p-2 mb-4 border rounded"
+        mb={4}
       />
-      <select value={orderType} onChange={(e) => setOrderType(e.target.value)} className="w-full p-2 mb-4 border rounded">
+      <Select value={orderType} onChange={(e) => setOrderType(e.target.value)} mb={4}>
         <option value="market">Market Order</option>
         <option value="limit">Limit Order</option>
         <option value="stop-loss">Stop-Loss Order</option>
-      </select>
-      <button type="button" onClick={() => handleTrade('buy')} className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Buy</button>
-      <button type="button" onClick={() => handleTrade('sell')} className="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-2">Sell</button>
-    </div>
+      </Select>
+      <Button colorScheme="green" onClick={() => handleTrade('buy')} width="full" mb={2}>
+        Buy
+      </Button>
+      <Button colorScheme="red" onClick={() => handleTrade('sell')} width="full">
+        Sell
+      </Button>
+    </Box>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { Box, Text } from '@chakra-ui/react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -81,9 +82,12 @@ const MarketChart: React.FC = () => {
   };
 
   return (
-    <div className="p-4 bg-white shadow rounded-lg">
-      <Line data={data} options={options} />
-    </div>
+    <Box p={4} bg="white" shadow="md" borderRadius="lg">
+      <Text fontWeight="bold" mb={2}>Market Chart</Text>
+      <Box height="400px">
+        <Line data={data} options={options} />
+      </Box>
+    </Box>
   );
 };
 
