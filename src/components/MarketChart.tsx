@@ -1,93 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Box, Text } from '@chakra-ui/react';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+// src/components/MarketChart.tsx
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
-
-interface ChartData {
-  labels: string[];
-  datasets: {
-    label: string;
-    data: number[];
-    borderColor: string;
-    backgroundColor: string;
-    fill: boolean;
-    tension: number;
-  }[];
-}
-
-const MarketChart: React.FC = () => {
-  const [data, setData] = useState<ChartData>({
-    labels: ['Loading...'],
-    datasets: [
-      {
-        label: 'Bitcoin Price',
-        data: [],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true,
-        tension: 0.4,
-      },
-    ],
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      // Replace with your real-time data fetching logic
-      const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
-      const result = await response.json();
-
-      setData({
-        labels: ['Time 1', 'Time 2', 'Time 3'],
-        datasets: [
-          {
-            label: 'Bitcoin Price',
-            data: [result.bpi.USD.rate_float, result.bpi.USD.rate_float, result.bpi.USD.rate_float],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            fill: true,
-            tension: 0.4,
-          },
-        ],
-      });
-    };
-
-    fetchData();
-    const interval = setInterval(fetchData, 60000); // Update every 60 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Bitcoin Price Chart',
-      },
-    },
-    elements: {
-      line: {
-        tension: 0.4, // Adds smooth curves
-      },
-      point: {
-        radius: 5, // Adds points at each data point
-        backgroundColor: 'rgba(75, 192, 192, 1)',
-      },
-    },
-  };
-
+const MarketChart = () => {
   return (
-    <Box p={4} bg="white" shadow="md" borderRadius="lg">
-      <Text fontWeight="bold" mb={2}>Market Chart</Text>
-      <Box height="400px">
-        <Line data={data} options={options} />
-      </Box>
-    </Box>
+    <Card className="bg-white">
+      <CardHeader>
+        <CardTitle className="text-sm">Market Chart</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {/* Add your chart component here */}
+        <div className="h-64">
+          {/* Example chart placeholder */}
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="white" />
+          </svg>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

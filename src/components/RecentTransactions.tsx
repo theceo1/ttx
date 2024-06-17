@@ -1,28 +1,56 @@
-import React from 'react';
-import { Box, VStack, Text, Heading, List, ListItem } from '@chakra-ui/react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 
-const RecentTransactions: React.FC = () => {
-  const transactions = [
-    { id: 1, type: 'Bought', amount: '0.05 BTC', status: 'Success' },
-    { id: 2, type: 'Sold', amount: '0.25 ETH', status: 'Failed' },
-    { id: 3, type: 'Deposited', amount: '$500 USDC', status: 'Success' },
-  ];
-
+const RecentTransactions = () => {
   return (
-    <Box p={4} bg="white" shadow="md" borderRadius="lg">
-      <Heading as="h3" size="md" mb={4}>Recent Transactions</Heading>
-      <List spacing={3}>
-        {transactions.map((transaction) => (
-          <ListItem key={transaction.id} p={2} border="1px solid #ddd" borderRadius="md">
-            <Text fontSize="lg">{transaction.type}</Text>
-            <Text color="gray.500">{transaction.amount}</Text>
-            <Text color={transaction.status === 'Success' ? 'green.500' : 'red.500'}>
-              {transaction.status}
-            </Text>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    <Card className="bg-white text-dark">
+      <CardHeader>
+        <CardTitle className="text-sm">Recent Transactions</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8 border">
+                <AvatarImage src="/placeholder-user.jpg" />
+                <AvatarFallback>BTC</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="font-medium text-sm">Bitcoin</div>
+                <div className="text-gray-500 text-xs">Bought 0.05 BTC</div>
+              </div>
+            </div>
+            <div className="text-green-500 font-medium text-sm">+$1,250.00</div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8 border">
+                <AvatarImage src="/placeholder-user.jpg" />
+                <AvatarFallback>ETH</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="font-medium text-sm">Ethereum</div>
+                <div className="text-gray-500 text-xs">Sold 0.25 ETH</div>
+              </div>
+            </div>
+            <div className="text-red-500 font-medium text-sm">-$750.00</div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8 border">
+                <AvatarImage src="/placeholder-user.jpg" />
+                <AvatarFallback>USDC</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="font-medium text-sm">USDC</div>
+                <div className="text-gray-500 text-xs">Deposited $500</div>
+              </div>
+            </div>
+            <div className="text-green-500 font-medium text-sm">+$500.00</div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

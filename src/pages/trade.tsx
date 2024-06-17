@@ -9,12 +9,10 @@ const TradePage = () => {
   const [amount, setAmount] = useState('');
 
   const handleBuy = () => {
-    // Handle buy logic
     console.log(`Buying ${amount} of ${coin}`);
   };
 
   const handleSell = () => {
-    // Handle sell logic
     console.log(`Selling ${amount} of ${coin}`);
   };
 
@@ -34,7 +32,11 @@ const TradePage = () => {
           <label htmlFor="coin" className="text-sm">
             Coin
           </label>
-          <Select id="coin" defaultValue={coin} onChange={(value: string) => setCoin(value)}>
+          <Select
+            id="coin"
+            defaultValue={coin}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCoin(e.target.value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select Coin" />
             </SelectTrigger>

@@ -1,31 +1,79 @@
-import React from 'react';
-import { VStack, HStack, Text, Heading } from '@chakra-ui/react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/Table';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 
-const MarketOverview: React.FC = () => {
-  const marketData = [
-    { coin: 'Bitcoin (BTC)', price: '$56,789.00', change: '+2.5%', marketCap: '$1.2T' },
-    { coin: 'Ethereum (ETH)', price: '$1,789.00', change: '-1.2%', marketCap: '$210B' },
-    { coin: 'USDC (USDC)', price: '$1.00', change: '+0.1%', marketCap: '$55B' }
-  ];
-
+const MarketOverview = () => {
   return (
-    <VStack mt={4} align="start" spacing={3}>
-      <Heading as="h4" size="md">Market Overview</Heading>
-      <HStack width="100%" justify="space-between" fontWeight="bold">
-        <Text>Coin</Text>
-        <Text>Price</Text>
-        <Text>Change</Text>
-        <Text>Market Cap</Text>
-      </HStack>
-      {marketData.map((data, index) => (
-        <HStack key={index} width="100%" justify="space-between">
-          <Text>{data.coin}</Text>
-          <Text>{data.price}</Text>
-          <Text color={data.change.startsWith('+') ? 'green.500' : 'red.500'}>{data.change}</Text>
-          <Text>{data.marketCap}</Text>
-        </HStack>
-      ))}
-    </VStack>
+    <Card className="bg-white text-dark">
+      <CardHeader>
+        <CardTitle className="text-sm">Top Cryptocurrencies</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-sm">Coin</TableHead>
+              <TableHead className="text-sm">Price</TableHead>
+              <TableHead className="text-sm">Change</TableHead>
+              <TableHead className="text-sm">Market Cap</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8 border">
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>BTC</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-medium text-sm">Bitcoin</div>
+                    <div className="text-gray-500 text-xs">BTC</div>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell className="text-sm">$56,789.00</TableCell>
+              <TableCell className="text-green-500 text-sm">+2.5%</TableCell>
+              <TableCell className="text-sm">$1.2T</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8 border">
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>ETH</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-medium text-sm">Ethereum</div>
+                    <div className="text-gray-500 text-xs">ETH</div>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell className="text-sm">$1,789.00</TableCell>
+              <TableCell className="text-red-500 text-sm">-1.2%</TableCell>
+              <TableCell className="text-sm">$210B</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8 border">
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>USDC</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-medium text-sm">USDC</div>
+                    <div className="text-gray-500 text-xs">USDC</div>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell className="text-sm">$1.00</TableCell>
+              <TableCell className="text-green-500 text-sm">+0.1%</TableCell>
+              <TableCell className="text-sm">$55B</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   );
 };
 
