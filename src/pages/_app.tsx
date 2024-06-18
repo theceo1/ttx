@@ -1,14 +1,13 @@
 // src/pages/_app.tsx
 import '@/styles/globals.css';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-import Header from '@/components/Header'; // Import the Header component
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <>
-      <Header /> {/* Include the Header component here */}
+    <SessionProvider session={session}>
       <Component {...pageProps} />
-    </>
+    </SessionProvider>
   );
 }
 

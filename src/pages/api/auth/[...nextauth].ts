@@ -35,5 +35,10 @@ export default NextAuth({
       session.user = token.user as { name?: string | null; email?: string | null; image?: string | null };
       return session;
     }
-  }
+  },
+  pages: {
+    signIn: '/auth/signin',  // Custom sign-in page path
+  },
+  debug: process.env.NODE_ENV === 'development',
+  secret: process.env.NEXTAUTH_SECRET,
 });

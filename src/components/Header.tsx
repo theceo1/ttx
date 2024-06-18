@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="bg-black text-white py-4 px-6 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        <Link href="#" className="text-2xl font-bold" prefetch={false}>
+        <Link href="/" className="text-2xl font-bold" prefetch={false}>
           trustBank
         </Link>
         <nav className="hidden md:flex items-center gap-4">
@@ -28,10 +28,10 @@ const Header = () => {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="outline" size="sm" className="text-white border-white">
+        <Button variant="outline" size="sm" className="border-white text-white">
           Sign In
         </Button>
-        <Button size="sm" className="bg-[#0097A7] text-white">
+        <Button size="sm" className="bg-teal-600 text-white">
           Sign Up
         </Button>
       </div>

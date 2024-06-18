@@ -1,20 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import { fetchAccountBalance } from '../utils/api';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import  Button  from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 
-const AccountBalance = () => {
+const AccountBalance: React.FC = () => {
+  const [balance, setBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    const getBalance = async () => {
+      const balance = await fetchAccountBalance();
+      setBalance(balance);
+    };
+    getBalance();
+  }, []);
+
   return (
-    <Card className="bg-[#0097A7] text-white">
+    <Card className="card bg-teal-600 text-white">
       <CardHeader>
-        <CardTitle className="text-sm">Account Balance</CardTitle>
+        <CardTitle>Account Balance</CardTitle>
       </CardHeader>
-      <CardContent className="flex items-center justify-between">
-        <div>
-          <div className="text-4xl font-bold">$12,345.67</div>
-          <div className="text-gray-200 text-xs">≈ 1.23 BTC</div>
+      <CardContent>
+        <div className="flex justify-between items-center">
+          <div>
+            <div className="text-4xl font-bold">${balance !== null ? balance.toFixed(2) : 'Loading...'}</div>
+            <div className="text-xs">≈ 1.23 BTC</div>
+          </div>
+          <Button variant="outline" size="sm" className="text-white border-white">
+            Deposit
+          </Button>
         </div>
-        <Button variant="outline" size="sm" className="text-white border-white">
-          Deposit
-        </Button>
       </CardContent>
     </Card>
   );

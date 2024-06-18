@@ -1,23 +1,47 @@
-// src/components/MarketChart.tsx
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
+
+const data = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'Price',
+      data: [65, 59, 80, 81, 56, 55, 40],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1,
+    },
+  ],
+};
+
+const options = {
+  responsive: true,
+  scales: {
+    x: {
+      type: 'category',
+      beginAtZero: true,
+    },
+    y: {
+      type: 'linear',
+      beginAtZero: true,
+    },
+  },
+};
 
 const MarketChart = () => {
-  return (
-    <Card className="bg-white">
-      <CardHeader>
-        <CardTitle className="text-sm">Market Chart</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {/* Add your chart component here */}
-        <div className="h-64">
-          {/* Example chart placeholder */}
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="white" />
-          </svg>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  return <Line data={data} options={options} />;
 };
 
 export default MarketChart;

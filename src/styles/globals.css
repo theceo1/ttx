@@ -4,8 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-class {
+  @apply text-lg;
+}
+
 body {
-  @apply bg-gray-100 text-gray-800;
+  @apply bg-white text-gray-800;
+}
+
+html, body, #__next {
+  height: 100%;
 }
 
 .dashboard {
@@ -210,4 +218,40 @@ button.primary {
 
 button.primary:hover {
   background-color: #e65c54;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 44px; /* Increased padding for bigger cards */
+  background-color: white;
+  margin-bottom: 14px; /* Increased margin for better spacing */
+}
+
+.market-overview-card {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 8000px; /* Adjust the max-width as needed */
+  margin: 5 auto; /* Center the card */
+}
+
+/* src/styles/globals.css */
+.account-balance-card {
+  width: 60%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.market-overview-card {
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recent-transactions-card {
+  width: 70%;
+  max-width: 700px;
+  margin-left: 10 auto;
+  margin-right: auto;
 }
