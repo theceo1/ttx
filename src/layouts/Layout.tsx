@@ -1,4 +1,3 @@
-// src/layouts/Layout.tsx
 import React, { ReactNode } from 'react';
 import Navbar from '@/components/Navbar';
 
@@ -8,9 +7,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="bg-white min-h-screen">
+    <div>
       <Navbar />
-      <main className="p-4">{children}</main>
+      <main className="p-4 bg-white">{children}</main>
     </div>
   );
 };

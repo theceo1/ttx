@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const client = await clientPromise;
-    const db = client.db('trustBank');
+    const db = client.db('trustbank');  // Ensure this matches the database name in the URI
     const usersCollection = db.collection('users');
 
     const existingUser = await usersCollection.findOne({ email });
@@ -58,7 +58,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('Error during user registration:', error); // Log the error for debugging
+    console.error('Error during user registration:', error);
     return res.status(500).json({ error: 'Failed to register user' });
   }
 };

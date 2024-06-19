@@ -2,30 +2,37 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { MongoClient } from 'mongodb';
 
-const uri = 'your_mongodb_connection_string'; // Replace with your MongoDB connection string
-const client = new MongoClient(uri);
+const uri = process.env.MONGODB_URI;
+let client: MongoClient;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+if (!uri) {
+  throw new Error('Please add your Mongo URI to .env.local');
+}
+
+const getClient = async () => {
+  if (!client) {
+    client = new MongoClient(uri);
+    await client.connect();
+  }
+  return client;
+};
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
 
   if (!session) {
-    return res.status(401).json({ message: 'Not authenticated' });
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
   try {
-    await client.connect();
-    const db = client.db('your_database_name'); // Replace with your database name
+    const client = await getClient();
+    const db = client.db('trustbank');
     const notificationsCollection = db.collection('notifications');
 
-    if (req.method === 'GET') {
-      const notifications = await notificationsCollection.find({ userId: session.user.id }).toArray();
-      res.status(200).json(notifications);
-    } else {
-      res.status(405).json({ message: 'Method not allowed' });
-    }
+    const notifications = await notificationsCollection.find({ email: session.user.email }).toArray();
+
+    res.status(200).json(notifications);
   } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch notifications', error });
-  } finally {
-    await client.close();
+    res.status(500).json({ error: 'Failed to fetch notifications' });
   }
-}
+};

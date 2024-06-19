@@ -1,18 +1,21 @@
+// src/pages/api/auth/[...nextauth].ts
+
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 
 export default NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text' },
+        email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' }
       },
       authorize: async (credentials) => {
         // Replace this with your own logic to validate user credentials
         const user = {
-          id: '1', // Ensure id is a string
+          id: '1',
           name: 'John Doe',
           email: 'john.doe@example.com'
         };
@@ -22,6 +25,10 @@ export default NextAuth({
           return null;
         }
       }
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
   callbacks: {

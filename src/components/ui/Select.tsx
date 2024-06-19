@@ -1,61 +1,56 @@
-import React, { useState } from 'react';
+import React, { ReactNode } from 'react';
 
 interface SelectProps {
-  id: string;
   value: string;
-  onChange: (value: string) => void;
+  onValueChange: (value: string) => void;
+  className?: string;
   children: React.ReactNode;
 }
 
-export const Select: React.FC<SelectProps> = ({ id, value, onChange, children }) => {
-  return (
-    <div className="relative">
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full border rounded-lg px-4 py-2 appearance-none"
-      >
-        {children}
-      </select>
-      <SelectTrigger className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none" />
-    </div>
-  );
-};
+export const Select: React.FC<SelectProps> = ({ value, onValueChange, className, children }) => (
+  <select className={`select ${className}`} value={value} onChange={(e) => onValueChange(e.target.value)}>
+    {children}
+  </select>
+);
 
 interface SelectTriggerProps {
   className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
 }
 
-export const SelectTrigger: React.FC<SelectTriggerProps> = ({ className }) => (
-  <div className={`cursor-pointer ${className}`}>
-    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-    </svg>
+export const SelectTrigger: React.FC<SelectTriggerProps> = ({ className, onClick, children }) => (
+  <div className={`select-trigger ${className}`} onClick={onClick}>
+    {children}
   </div>
 );
 
-interface SelectValueProps {
-  placeholder: string;
-}
-
-export const SelectValue: React.FC<SelectValueProps> = ({ placeholder }) => (
-  <span>{placeholder}</span>
-);
-
 interface SelectContentProps {
+  className?: string;
   children: React.ReactNode;
 }
 
-export const SelectContent: React.FC<SelectContentProps> = ({ children }) => (
-  <div className="absolute mt-2 w-full bg-white border rounded-lg shadow-lg">{children}</div>
+export const SelectContent: React.FC<SelectContentProps> = ({ className, children }) => (
+  <div className={`select-content ${className}`}>{children}</div>
 );
 
 interface SelectItemProps {
-  children: React.ReactNode;
   value: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
-export const SelectItem: React.FC<SelectItemProps> = ({ children, value }) => (
-  <option value={value}>{children}</option>
+export const SelectItem: React.FC<SelectItemProps> = ({ value, className, children }) => (
+  <option className={`select-item ${className}`} value={value}>
+    {children}
+  </option>
+);
+
+interface SelectValueProps {
+  className?: string;
+  children: ReactNode;
+}
+
+export const SelectValue: React.FC<SelectValueProps> = ({ className, children }) => (
+  <div className={`select-value ${className}`}>{children}</div>
 );

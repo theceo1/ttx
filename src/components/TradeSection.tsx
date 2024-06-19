@@ -1,59 +1,44 @@
 import React, { useState } from 'react';
-import { Label } from '@/components/ui/Label';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/Select';
-import { Input } from '@/components/ui/Input';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select';
+import  Input  from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
-const TradeSection = () => {
-  const [selectedCoin, setSelectedCoin] = useState<string>('BTC');
-  const [amount, setAmount] = useState<number | string>('');
+const TradeSection: React.FC = () => {
+  const [coin, setCoin] = useState('BTC');
+  const [amount, setAmount] = useState('');
+
+  const handleTrade = () => {
+    // Implement trade logic here
+  };
 
   return (
     <div className="trade-section">
-      <div className="grid gap-4">
-        <div className="grid grid-cols-2 gap-4">
-          <Button variant="outline" size="sm">
-            Buy
-          </Button>
-          <Button variant="outline" size="sm">
-            Sell
-          </Button>
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="coin" className="text-sm">
-            Coin
-          </Label>
-          <Select value={selectedCoin} onValueChange={setSelectedCoin}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select Coin" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
-              <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
-              <SelectItem value="USDC">USDC</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="amount" className="text-sm">
-            Amount
-          </Label>
-          <Input
-            id="amount"
-            type="number"
-            placeholder="Enter amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </div>
-        <Button size="sm">Place Order</Button>
+      <div className="grid grid-cols-2 gap-4">
+        <Button variant="outline" size="sm" className="hover:bg-teal-500">
+          Buy
+        </Button>
+        <Button variant="outline" size="sm" className="hover:bg-teal-500">
+          Sell
+        </Button>
       </div>
+      <div className="grid gap-2 mt-4">
+        <label htmlFor="coin" className="text-sm">Coin</label>
+        <Select value={coin} onValueChange={setCoin}>
+          <SelectTrigger className="w-full">
+            {coin ? <SelectValue>{coin}</SelectValue> : <span className="text-gray-500">Select Coin</span>}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
+            <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
+            <SelectItem value="USDC">USDC</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid gap-2 mt-4">
+        <label htmlFor="amount" className="text-sm">Amount</label>
+        <Input id="amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" />
+      </div>
+      <Button className="mt-4 hover:bg-teal-500" onClick={handleTrade}>Place Order</Button>
     </div>
   );
 };

@@ -1,26 +1,55 @@
-// src/components/ui/table.tsx
 import React from 'react';
 
-export const Table = ({ children }: { children: React.ReactNode }) => (
-  <table className="w-full">{children}</table>
+interface TableProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const Table: React.FC<TableProps> = ({ className, children }) => (
+  <table className={`table ${className}`}>{children}</table>
 );
 
-export const TableHeader = ({ children }: { children: React.ReactNode }) => (
-  <thead className="bg-gray-100">{children}</thead>
+interface TableBodyProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const TableBody: React.FC<TableBodyProps> = ({ className, children }) => (
+  <tbody className={`table-body ${className}`}>{children}</tbody>
 );
 
-export const TableRow = ({ children }: { children: React.ReactNode }) => (
-  <tr>{children}</tr>
+interface TableCellProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const TableCell: React.FC<TableCellProps> = ({ className, children }) => (
+  <td className={`table-cell ${className}`}>{children}</td>
 );
 
-export const TableHead = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <th className={`text-left px-4 py-2 ${className}`}>{children}</th>
+interface TableHeadProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const TableHead: React.FC<TableHeadProps> = ({ className, children }) => (
+  <th className={`table-head ${className}`}>{children}</th>
 );
 
-export const TableBody = ({ children }: { children: React.ReactNode }) => (
-  <tbody>{children}</tbody>
+interface TableHeaderProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const TableHeader: React.FC<TableHeaderProps> = ({ className, children }) => (
+  <thead className={`table-header ${className}`}>{children}</thead>
 );
 
-export const TableCell = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <td className={`px-4 py-2 ${className}`}>{children}</td>
+interface TableRowProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const TableRow: React.FC<TableRowProps> = ({ className, children }) => (
+  <tr className={`table-row ${className}`}>{children}</tr>
 );

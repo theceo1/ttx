@@ -1,21 +1,23 @@
-// src/components/ui/Input.tsx
 import React from 'react';
 
 interface InputProps {
   id: string;
   type: string;
-  placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  className?: string;
 }
 
-export const Input = ({ id, type, placeholder, value, onChange }: InputProps) => (
+const Input: React.FC<InputProps> = ({ id, type, value, onChange, placeholder, className }) => (
   <input
     id={id}
     type={type}
-    placeholder={placeholder}
     value={value}
     onChange={onChange}
-    className="w-full border rounded-lg px-4 py-2"
+    placeholder={placeholder}
+    className={`input ${className}`}
   />
 );
+
+export default Input;

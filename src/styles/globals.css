@@ -1,257 +1,113 @@
-/* src/styles/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.custom-class {
-  @apply text-lg;
-}
-
-body {
-  @apply bg-white text-gray-800;
-}
-
-html, body, #__next {
-  height: 100%;
-}
-
-.dashboard {
-  @apply flex;
-}
-
-.sidebar {
-  @apply w-1/4 p-4 bg-white shadow-lg;
-}
-
-.main-content {
-  @apply w-3/4 p-4;
-}
-
-.account-balance {
-  @apply mb-8;
-}
-
-.account-balance h2 {
-  @apply text-4xl font-bold;
-}
-
-.account-balance p {
-  @apply text-sm text-gray-600;
-}
-
-.account-balance button {
-  @apply mt-4 bg-blue-500 text-white px-4 py-2 rounded;
-}
-
-.recent-transactions {
-  @apply mb-8;
-}
-
-.recent-transactions h3 {
-  @apply text-xl font-semibold mb-4;
-}
-
-.recent-transactions ul {
-  @apply space-y-2;
-}
-
-.recent-transactions li {
-  @apply flex justify-between items-center;
-}
-
-.recent-transactions .positive {
-  @apply text-green-500;
-}
-
-.recent-transactions .negative {
-  @apply text-red-500;
-}
-
-.market-overview {
-  @apply mb-8;
-}
-
-.market-overview h3 {
-  @apply text-xl font-semibold mb-4;
-}
-
-.market-overview table {
-  @apply w-full text-left;
-}
-
-.market-overview th, .market-overview td {
-  @apply py-2;
-}
-
-.market-overview .positive {
-  @apply text-green-500;
-}
-
-.market-overview .negative {
-  @apply text-red-500;
-}
-
-.trade-section h3 {
-  @apply text-xl font-semibold mb-4;
-}
-
-.trade-section form {
-  @apply flex items-center space-x-4;
-}
-
-.trade-section select {
-  @apply border border-gray-300 rounded p-2;
-}
-
-.trade-section button {
-  @apply bg-blue-500 text-white px-4 py-2 rounded;
-}
-
-.market-chart {
-  @apply mb-8;
-}
-
-.market-chart h3 {
-  @apply text-xl font-semibold mb-4;
-}
-
-/* Add these styles to your existing globals.css file */
-
-/* Header Styles */
-header {
-  background-color: #1a1a2e;
-  color: #eaeaea;
-  padding: 20px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-}
-
-header nav a {
-  color: #eaeaea;
-  margin-left: 20px;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-header nav a:hover {
-  color: #ff6f61;
-}
-
-header .auth-buttons button {
-  margin-left: 10px;
-}
-
-/* Main Content Styles */
-main {
-  padding: 40px;
-  background-color: #f4f4f9;
-  min-height: calc(100vh - 80px);
-}
-
-main .content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-main .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-@media (min-width: 768px) {
-  main .grid {
-    grid-template-columns: 300px 1fr;
-  }
-}
-
-/* Card Styles */
+/* General Card Styling */
 .card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  @apply shadow-lg rounded-lg p-4;
 }
 
 .card-header {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  @apply mb-4;
+}
+
+.card-title {
+  @apply text-xl font-bold;
 }
 
 .card-content {
-  font-size: 16px;
+  @apply text-gray-700;
 }
 
-/* Button Styles */
-button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+/* Specific Card Styling */
+.card-account-balance {
+  @apply bg-teal-500 text-white;
 }
 
-button.outline {
-  border: 1px solid #ff6f61;
-  background-color: transparent;
-  color: #ff6f61;
+.card-recent-transactions {
+  @apply bg-white;
 }
 
-button.outline:hover {
-  background-color: #ff6f61;
-  color: #fff;
+.card-btc-fiat-converter {
+  @apply bg-white;
 }
 
-button.primary {
-  background-color: #ff6f61;
-  color: #fff;
+.card-top-cryptocurrencies {
+  @apply bg-white;
 }
 
-button.primary:hover {
-  background-color: #e65c54;
+.card-trade {
+  @apply bg-white;
 }
 
-.card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 44px; /* Increased padding for bigger cards */
-  background-color: white;
-  margin-bottom: 14px; /* Increased margin for better spacing */
+.card-market-chart {
+  @apply bg-white;
 }
 
-.market-overview-card {
-  width: 100%; /* Adjust the width as needed */
-  max-width: 8000px; /* Adjust the max-width as needed */
-  margin: 5 auto; /* Center the card */
+/* Avatar Styling */
+.avatar {
+  @apply w-8 h-8 border rounded-full overflow-hidden;
 }
 
-/* src/styles/globals.css */
-.account-balance-card {
-  width: 60%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.avatar-image {
+  @apply w-full h-full object-cover;
 }
 
-.market-overview-card {
-  width: 80%;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+.avatar-fallback {
+  @apply flex items-center justify-center w-full h-full bg-gray-200 text-gray-500;
 }
 
-.recent-transactions-card {
-  width: 70%;
-  max-width: 700px;
-  margin-left: 10 auto;
-  margin-right: auto;
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  @apply relative;
+}
+
+.dropdown-menu-trigger {
+  @apply bg-white border border-gray-300 rounded-md px-2 py-1 text-sm hover:bg-gray-100;
+}
+
+.dropdown-menu-content {
+  @apply absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg;
+}
+
+.dropdown-menu-item {
+  @apply px-4 py-2 text-sm text-gray-700 hover:bg-gray-100;
+}
+
+.dropdown-menu-separator {
+  @apply border-t border-gray-200;
+}
+
+/* Table Styling */
+.table {
+  @apply w-full text-left;
+}
+
+.table-header {
+  @apply bg-gray-100;
+}
+
+.table-row {
+  @apply border-b border-gray-200;
+}
+
+.table-head {
+  @apply px-4 py-2 font-medium text-gray-700;
+}
+
+.table-body {
+  @apply bg-white;
+}
+
+.table-cell {
+  @apply px-4 py-2;
+}
+
+/* Button Styling */
+.button-black {
+  @apply bg-black text-white;
+}
+
+.button:hover {
+  @apply hover:bg-teal-500;
 }

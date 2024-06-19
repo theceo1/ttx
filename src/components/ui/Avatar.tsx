@@ -1,23 +1,27 @@
-// src/components/ui/avatar.tsx
 import React from 'react';
 
 interface AvatarProps {
-  children: React.ReactNode;
   className?: string;
+  children: React.ReactNode;
 }
 
-export const Avatar = ({ children, className }: AvatarProps) => (
-  <div className={`rounded-full overflow-hidden ${className}`}>{children}</div>
+export const Avatar: React.FC<AvatarProps> = ({ className, children }) => (
+  <div className={`avatar ${className}`}>{children}</div>
 );
 
 interface AvatarImageProps {
   src: string;
+  className?: string;
 }
 
-export const AvatarImage = ({ src }: AvatarImageProps) => (
-  <img src={src} alt="Avatar" className="w-full h-full object-cover" />
+export const AvatarImage: React.FC<AvatarImageProps> = ({ src, className }) => (
+  <img src={src} className={`avatar-image ${className}`} alt="Avatar" />
 );
 
-export const AvatarFallback = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex items-center justify-center w-full h-full bg-gray-300 text-gray-700">{children}</div>
+interface AvatarFallbackProps {
+  className?: string;
+}
+
+export const AvatarFallback: React.FC<AvatarFallbackProps> = ({ className, children }) => (
+  <div className={`avatar-fallback ${className}`}>{children}</div>
 );
