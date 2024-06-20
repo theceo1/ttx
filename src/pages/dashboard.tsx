@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { io } from 'socket.io-client';
-import { useSession, getSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Button from '@/components/ui/Button';
 import MarketChart from '@/components/charts/MarketChart';
@@ -14,11 +13,6 @@ import {
   Avatar,
   AvatarImage,
   AvatarFallback,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   Table,
   TableHeader,
   TableRow,
@@ -31,6 +25,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui';
+import { fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat } from '../services/cryptoService';
 
 interface Transaction {
   id: number;
@@ -50,11 +45,7 @@ interface MarketData {
 const Dashboard = () => {
   const { data: session } = useSession();
   const [balance, setBalance] = useState<number | null>(null);
-  const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([
-    { id: 1, type: 'Bought', coin: 'BTC', amount: 0.1, value: 5000 },
-    { id: 2, type: 'Sold', coin: 'ETH', amount: 0.5, value: 2000 },
-    { id: 3, type: 'Bought', coin: 'USDT', amount: 1000, value: 1000 },
-  ]);
+  const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
   const [marketData, setMarketData] = useState<MarketData[]>([]);
   const [btcValue, setBtcValue] = useState<number | null>(null);
   const [fiatValue, setFiatValue] = useState<string>('');
@@ -82,14 +73,18 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const balanceData = await fetchAccountBalance();
-      setBalance(balanceData);
+      try {
+        const balanceData = await fetchAccountBalance();
+        setBalance(balanceData);
 
-      const transactionsData = await fetchRecentTransactions();
-      setRecentTransactions(transactionsData);
+        const transactionsData = await fetchRecentTransactions();
+        setRecentTransactions(transactionsData);
 
-      const marketData = await fetchMarketOverview();
-      setMarketData(marketData);
+        const marketData = await fetchMarketOverview();
+        setMarketData(marketData);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
     };
 
     fetchData();
@@ -97,8 +92,12 @@ const Dashboard = () => {
 
   const handleBtcToFiat = async () => {
     if (btcValue !== null) {
-      const result = await fetchBtcToFiat(btcValue, fiatCurrency);
-      setFiatValue(result);
+      try {
+        const result = await fetchBtcToFiat(btcValue, fiatCurrency);
+        setFiatValue(result);
+      } catch (error) {
+        console.error('Error converting BTC to Fiat', error);
+      }
     }
   };
 
@@ -106,23 +105,23 @@ const Dashboard = () => {
     <div className={`flex flex-col h-screen ${userPreferences.theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
       <header className="bg-black text-white py-4 px-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link href="#" className="text-2xl font-bold" prefetch={false}>
+          <Link href="/" className="text-2xl font-bold" prefetch={false}>
             trustBank
           </Link>
           <nav className="hidden md:flex items-center gap-4">
-            <Link href="#" className="hover:text-teal-500" prefetch={false}>
+            <Link href="/trade" className="hover:text-teal-500" prefetch={false}>
               Trade
             </Link>
-            <Link href="#" className="hover:text-teal-500" prefetch={false}>
+            <Link href="/earn" className="hover:text-teal-500" prefetch={false}>
               Earn
             </Link>
-            <Link href="#" className="hover:text-teal-500" prefetch={false}>
+            <Link href="/wallet" className="hover:text-teal-500" prefetch={false}>
               Wallet
             </Link>
-            <Link href="#" className="hover:text-teal-500" prefetch={false}>
+            <Link href="/markets" className="hover:text-teal-500" prefetch={false}>
               Markets
             </Link>
-            <Link href="#" className="hover:text-teal-500" prefetch={false}>
+            <Link href="/vision" className="hover:text-teal-500" prefetch={false}>
               Vision
             </Link>
           </nav>
@@ -190,7 +189,7 @@ const Dashboard = () => {
                 <label htmlFor="cryptoCoin" className="text-sm">Select Crypto Currency</label>
                 <Select value={cryptoCoin} onValueChange={setCryptoCoin}>
                   <SelectTrigger className="w-full">
-                    {cryptoCoin ? <span>{cryptoCoin}</span> : <span className="text-gray-500">Select Coin</span>}
+                    <span>{cryptoCoin ? cryptoCoin : 'Select Coin'}</span>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
@@ -203,7 +202,7 @@ const Dashboard = () => {
                 <label htmlFor="fiatCurrency" className="text-sm">Select Fiat Currency</label>
                 <Select value={fiatCurrency} onValueChange={setFiatCurrency}>
                   <SelectTrigger className="w-full">
-                    {fiatCurrency ? <span>{fiatCurrency}</span> : <span className="text-gray-500">Select Fiat Currency</span>}
+                    <span>{fiatCurrency ? fiatCurrency : 'Select Fiat Currency'}</span>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="USD">USD</SelectItem>

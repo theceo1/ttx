@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select';
-import  Input  from '@/components/ui/Input';
+import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
 const TradeSection: React.FC = () => {
@@ -12,7 +12,7 @@ const TradeSection: React.FC = () => {
   };
 
   return (
-    <div className="trade-section">
+    <div className="trade-section p-4 bg-white shadow rounded-lg">
       <div className="grid grid-cols-2 gap-4">
         <Button variant="outline" size="sm" className="hover:bg-teal-500">
           Buy
@@ -38,7 +38,7 @@ const TradeSection: React.FC = () => {
         <label htmlFor="amount" className="text-sm">Amount</label>
         <Input id="amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" />
       </div>
-      <Button className="mt-4 hover:bg-teal-500" onClick={handleTrade}>Place Order</Button>
+      <Button className="mt-4 bg-teal-500 text-white hover:bg-teal-600" onClick={handleTrade}>Place Order</Button>
     </div>
   );
 };

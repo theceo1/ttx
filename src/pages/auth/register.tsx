@@ -52,7 +52,7 @@ const Register = () => {
             <li>Spend your crypto securely in real-time with trustCard</li>
             <li>Earn rewards on every transaction</li>
             <li>ZERO hidden fees</li>
-            <li>Trade swift, secure and with confidence on our exchange</li>
+            <li>Trade Swift, Secure and with confidence on our exchange</li>
           </ul>
           <p className="text-base italic text-center">
             Want to be the first to know when we launch the trustCard?

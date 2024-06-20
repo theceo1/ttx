@@ -29,9 +29,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !email || !password) {
+  if (!email || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -42,13 +42,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const existingUser = await usersCollection.findOne({ email });
     if (existingUser) {
+      console.log('User already exists');
       return res.status(409).json({ error: 'User already exists' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
-      username,
       email,
       password: hashedPassword,
       createdAt: new Date(),

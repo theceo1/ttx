@@ -16,6 +16,10 @@ const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [subscribeEmail, setSubscribeEmail] = useState('');
+
+  const [subscribeMessage, setSubscribeMessage] = useState('');
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,13 +41,48 @@ const SignInPage = () => {
     }
   };
 
+  const handleSubscribe = async () => {
+    try {
+      await axios.post('/api/subscribe', { email: subscribeEmail });
+      setSubscribeMessage('Subscribed successfully!');
+      setSubscribeEmail('');
+    } catch (err) {
+      setSubscribeMessage('Failed to subscribe');
+    }
+  };
+
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white justify-center items-center">
+        <img src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" />
         <div className="max-w-lg text-center space-y-4">
-          <h2 className="text-4xl font-bold">Welcome Back to trustBank</h2>
-          <p className="text-xl">We've missed you!</p>
-          <p>Sign in to continue managing your finances.</p>
+          <h2 className="text-4xl font-bold mb-2">trustBank</h2>
+          <ul>
+            <li>A crypto card that let you SPEND | EARN | TRADE in real time. </li>
+            <br />Pay for food, Ride, Bills with our crypto to fiat debit card, all on the go.
+          </ul>
+          <p className="text-base italic text-center">
+            Want to be the first to know when we launch the trustCard?
+            <br />Subscribe to our waiting list now! It's FREE.
+          </p>
+          <div className="mt-4 flex flex-col items-center">
+            <Input
+              id="subscribeEmail"
+              type="email"
+              placeholder="Enter your email"
+              value={subscribeEmail}
+              onChange={(e) => setSubscribeEmail(e.target.value)}
+              className="appearance-none rounded-md px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm mb-2"
+            />
+            <Button
+              type="button"
+              onClick={handleSubscribe}
+              className="bg-white text-teal-500 hover:bg-gray-100 hover:text-white rounded-md py-2 px-4 text-lg font-semibold"
+            >
+              Subscribe
+            </Button>
+            {subscribeMessage && <p className="mt-2 text-sm">{subscribeMessage}</p>}
+          </div>
         </div>
       </div>
       <div className="flex flex-1 justify-center items-center p-4">
