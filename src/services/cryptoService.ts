@@ -71,11 +71,6 @@ export const fetchBtcToFiat = async (btcAmount: number, fiatCurrency: string) =>
   }
 };
 
-export default {
-  fetchCryptoData,
-  fetchUserPortfolio,
-  fetchAccountBalance,
-  fetchRecentTransactions,
-  fetchMarketOverview,
-  fetchBtcToFiat,
-};
+const cryptoService = { fetchCryptoData, fetchUserPortfolio, fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat };
+
+export default cryptoService;

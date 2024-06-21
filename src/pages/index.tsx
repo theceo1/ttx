@@ -23,8 +23,8 @@ export default function Home() {
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
         <h1 className="text-3xl font-semibold">You are not authenticated</h1>
-        <Link href="/api/auth/signin" className="text-blue-500 ml-2">
-          Login
+        <Link href="/api/auth/signin">
+          <a className="text-blue-500 ml-2">Login</a>
         </Link>
       </div>
     );
@@ -39,9 +39,7 @@ export default function Home() {
       <header className="p-4 bg-black text-white shadow-lg">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard</h1>
-          <button onClick={() => signOut()} className="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600">
-            Logout
-          </button>
+          <button onClick={() => signOut()} className="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600">Logout</button>
         </div>
       </header>
       <main className="p-4 bg-white min-h-screen">

@@ -8,7 +8,7 @@ interface SelectProps {
   children: React.ReactNode;
 }
 
-export const Select: React.FC<SelectProps> = ({ id, value, onChange, className, children }) => {
+const Select: React.FC<SelectProps> = ({ id, value, onChange, className, children }) => {
   return (
     <select id={id} value={value} onChange={onChange} className={className}>
       {children}
@@ -21,7 +21,7 @@ interface SelectItemProps {
   children: React.ReactNode;
 }
 
-export const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => {
+const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => {
   return (
     <option value={value}>
       {children}
@@ -29,11 +29,40 @@ export const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => {
   );
 };
 
-// Dummy components to fulfill the missing exports
-export const SelectTrigger: React.FC<{ children: React.ReactNode, className?: string }> = ({ children, className }) => (
-  <div className={className}>{children}</div>
-);
+interface SelectTriggerProps {
+  className?: string;
+  children: React.ReactNode;
+}
 
-export const SelectContent: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div>{children}</div>
-);
+const SelectTrigger: React.FC<SelectTriggerProps> = ({ className, children }) => {
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  );
+};
+
+interface SelectContentProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+const SelectContent: React.FC<SelectContentProps> = ({ className, children }) => {
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  );
+};
+
+interface SelectValueProps {
+  placeholder: string;
+}
+
+const SelectValue: React.FC<SelectValueProps> = ({ placeholder }) => {
+  return (
+    <span>{placeholder}</span>
+  );
+};
+
+export { Select, SelectItem, SelectTrigger, SelectContent, SelectValue };
