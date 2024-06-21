@@ -1,4 +1,9 @@
-function ArrowUpIcon(props) {
+// src/components/icons/ArrowDownIcon.tsx
+import React from 'react';
+
+interface ArrowUpIconProps extends React.SVGProps<SVGSVGElement> {}
+
+const ArrowUpIcon: React.FC<ArrowUpIconProps> = (props) => {
   return (
     <svg
       {...props}
@@ -12,10 +17,9 @@ function ArrowUpIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="m5 12 7-7 7 7" />
-      <path d="M12 19V5" />
+      <path d="M12 5v14M19 12l-7 7-7-7" />
     </svg>
-  )
-}
+  );
+};
 
 export default ArrowUpIcon;

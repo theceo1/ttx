@@ -1,4 +1,9 @@
-function CoinsIcon(props) {
+// src/components/icons/BitcoinIcon.tsx
+import React from 'react';
+
+interface CoinsIconProps extends React.SVGProps<SVGSVGElement> {}
+
+const CoinsIcon: React.FC<CoinsIconProps> = (props) => {
   return (
     <svg
       {...props}
@@ -12,12 +17,11 @@ function CoinsIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <circle cx="8" cy="8" r="6" />
-      <path d="M18.09 10.37A6 6 0 1 1 10.34 18" />
-      <path d="M7 6h1v4" />
-      <path d="m16.71 13.88.7.71-2.82 2.82" />
+      <path d="M6 12h12" />
+      <path d="M6 6h12" />
+      <path d="M6 18h12" />
     </svg>
-  )
-}
+  );
+};
 
 export default CoinsIcon;

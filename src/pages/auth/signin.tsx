@@ -1,8 +1,10 @@
+// src/pages/auth/signin.tsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import axios from 'axios';
+import Image from 'next/image';
 import {
   Card,
   CardHeader,
@@ -53,16 +55,16 @@ const SignInPage = () => {
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white justify-center items-center">
-        <img src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" />
+        <Image src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" width={320} height={320} />
         <div className="max-w-lg text-center space-y-4">
           <h2 className="text-4xl font-bold mb-2">trustBank</h2>
           <ul>
-            <li>A crypto card that let you SPEND | EARN | TRADE in real time. </li>
+            <li>A crypto card that lets you SPEND | EARN | TRADE in real time.</li>
             <br />Pay for food, Ride, Bills with our crypto to fiat debit card, all on the go.
           </ul>
           <p className="text-base italic text-center">
             Want to be the first to know when we launch the trustCard?
-            <br />Subscribe to our waiting list now! It's FREE.
+            <br />Subscribe to our waiting list now! It&apos;s FREE.
           </p>
           <div className="mt-4 flex flex-col items-center">
             <Input
@@ -130,7 +132,7 @@ const SignInPage = () => {
               </Button>
             </form>
             <p className="mt-6 text-center text-sm text-gray-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/auth/register" className="text-teal-500 font-medium">
                 Register
               </Link>
