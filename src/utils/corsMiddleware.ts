@@ -1,3 +1,5 @@
+// src/utils/corsMiddleware.ts
+
 import Cors from 'cors';
 import { NextApiRequest, NextApiResponse } from 'next';
 

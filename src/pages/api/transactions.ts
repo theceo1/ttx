@@ -1,8 +1,5 @@
 import { MongoClient } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const uri = process.env.MONGODB_URI;
 
@@ -13,11 +10,15 @@ if (!uri) {
 const client = new MongoClient(uri);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
   try {
     await client.connect();
     const db = client.db('trustbank');
-    // Your database operations here
-    res.status(200).json({ message: 'Success' });
+    const transactions = await db.collection('transactions').find({}).toArray();
+    res.status(200).json({ transactions });
   } catch (e) {
     console.error('MongoDB connection error:', e);
     res.status(500).json({ error: 'MongoDB connection error' });

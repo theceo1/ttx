@@ -2,62 +2,33 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-if (!uri) {
-  throw new Error('Please add your Mongo URI to .env.local');
-}
-
-if (process.env.NODE_ENV === 'development') {
-  if (!(global as any)._mongoClientPromise) {
-    client = new MongoClient(uri);
-    (global as any)._mongoClientPromise = client.connect();
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('Please add your Mongo URI to .env.local');
   }
-  clientPromise = (global as any)._mongoClientPromise;
-} else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
-}
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db('trustbank');
+  const usersCollection = db.collection('users');
+
   const session = await getSession({ req });
 
   if (!session) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', ['POST']);
-    return res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-
-  const { name, email, notifications, theme } = req.body;
-
-  if (!name || !email) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
+  const { name, email } = req.body;
 
   try {
-    const client = await clientPromise;
-    const db = client.db('trustBank');
-    const usersCollection = db.collection('users');
-
-    await usersCollection.updateOne(
-      { email: session.user.email },
-      {
-        $set: {
-          name,
-          email,
-          notifications,
-          theme,
-        },
-      }
-    );
-
-    return res.status(200).json({ message: 'Profile updated successfully' });
+    await usersCollection.updateOne({ email: session.user.email }, { $set: { name, email } });
+    res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
-    return res.status(500).json({ message: 'Failed to update profile' });
+    res.status(500).json({ error: 'Failed to update user' });
+  } finally {
+    await client.close();
   }
 };
+
+export default handler;

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { Button, Input } from '@/components/ui';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
+import Image from 'next/image';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -44,7 +45,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex">
       <div className="w-1/2 bg-teal-600 flex flex-col justify-start items-center text-white p-8 relative">
-        <img src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" />
+        <Image src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" width={320} height={320} />
         <div className="mt-64 text-center z-10">
           <h2 className="text-4xl font-bold mb-2">trustBank</h2>
           <p className="text-lg mb-4 text-center">SPEND | EARN | TRADE</p>
@@ -56,7 +57,7 @@ const Register = () => {
           </ul>
           <p className="text-base italic text-center">
             Want to be the first to know when we launch the trustCard?
-            <br />Subscribe to our waiting list now! It's FREE.
+            <br />Subscribe to our waiting list now! It&apos;s FREE.
           </p>
           <div className="mt-4 flex flex-col items-center">
             <Input

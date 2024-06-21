@@ -1,7 +1,7 @@
 // src/components/Vision.tsx
-
 import Link from "next/link";
 import Button from '@/components/ui/Button';
+import Image from "next/image";
 
 export default function Vision() {
   return (
@@ -74,7 +74,7 @@ export default function Vision() {
             <div>
               <h2 className="text-2xl font-bold mb-4">Our Debit Card</h2>
               <div className="flex justify-center">
-                <img
+                <Image
                   src="/placeholder.svg"
                   alt="trustBank Debit Card"
                   width={400}

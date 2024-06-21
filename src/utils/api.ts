@@ -1,42 +1,36 @@
+import axios from 'axios';
+
+type Transaction = {
+  id: number;
+  type: string;
+  coin: string;
+  amount: number;
+  value: number;
+};
+
+type MarketData = {
+  coin: string;
+  price: number;
+  change: number;
+  marketCap: number;
+};
+
 export const fetchAccountBalance = async (): Promise<number> => {
-  // Mocking an API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(12345.67);
-    }, 1000);
-  });
+  const response = await axios.get('/api/account-balance');
+  return response.data.balance;
 };
 
 export const fetchRecentTransactions = async (): Promise<Transaction[]> => {
-  // Mocking an API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        { id: 1, type: 'Bought', coin: 'BTC', amount: 0.5, value: 20000 },
-        { id: 2, type: 'Sold', coin: 'ETH', amount: 1.2, value: 1500 },
-      ]);
-    }, 1000);
-  });
+  const response = await axios.get('/api/transactions');
+  return response.data.transactions;
 };
 
 export const fetchMarketOverview = async (): Promise<MarketData[]> => {
-  // Mocking an API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        { coin: 'BTC', price: 40000, change: 2.5, marketCap: 750000000 },
-        { coin: 'ETH', price: 2500, change: -1.2, marketCap: 300000000 },
-      ]);
-    }, 1000);
-  });
+  const response = await axios.get('/api/market-overview');
+  return response.data.marketOverview;
 };
 
 export const fetchBtcToFiat = async (btcAmount: number): Promise<string> => {
-  // Mocking an API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const fiatValue = btcAmount * 40000; // Example conversion rate
-      resolve(`$${fiatValue.toFixed(2)}`);
-    }, 1000);
-  });
+  const response = await axios.get('/api/btc-to-fiat', { params: { btcAmount } });
+  return response.data.fiatValue;
 };

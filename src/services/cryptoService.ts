@@ -21,7 +21,7 @@ export const fetchCryptoData = async () => {
 
 export const fetchUserPortfolio = async (userId: string) => {
   try {
-    const response = await axios.get(`https://api.example.com/user/${userId}/portfolio`);
+    const response = await axios.get(`/api/user/${userId}/portfolio`);
     return response.data;
   } catch (error) {
     console.error('Error fetching user portfolio:', error);
@@ -31,7 +31,7 @@ export const fetchUserPortfolio = async (userId: string) => {
 
 export const fetchAccountBalance = async () => {
   try {
-    const response = await axios.get('https://api.example.com/account/balance');
+    const response = await axios.get('/api/account/balance');
     return response.data;
   } catch (error) {
     console.error('Error fetching account balance', error);
@@ -41,7 +41,7 @@ export const fetchAccountBalance = async () => {
 
 export const fetchRecentTransactions = async () => {
   try {
-    const response = await axios.get('https://api.example.com/account/recent-transactions');
+    const response = await axios.get('/api/account/recent-transactions');
     return response.data;
   } catch (error) {
     console.error('Error fetching recent transactions', error);
@@ -51,7 +51,7 @@ export const fetchRecentTransactions = async () => {
 
 export const fetchMarketOverview = async () => {
   try {
-    const response = await axios.get('https://api.example.com/market-overview');
+    const response = await axios.get('/api/market-overview');
     return response.data;
   } catch (error) {
     console.error('Error fetching market overview', error);
@@ -61,7 +61,7 @@ export const fetchMarketOverview = async () => {
 
 export const fetchBtcToFiat = async (btcAmount: number, fiatCurrency: string) => {
   try {
-    const response = await axios.get('https://api.example.com/convert-btc-to-fiat', {
+    const response = await axios.get('/api/convert-btc-to-fiat', {
       params: { btcAmount, fiatCurrency }
     });
     return response.data;
@@ -71,4 +71,11 @@ export const fetchBtcToFiat = async (btcAmount: number, fiatCurrency: string) =>
   }
 };
 
-export default { fetchCryptoData, fetchUserPortfolio, fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat };
+export default {
+  fetchCryptoData,
+  fetchUserPortfolio,
+  fetchAccountBalance,
+  fetchRecentTransactions,
+  fetchMarketOverview,
+  fetchBtcToFiat,
+};

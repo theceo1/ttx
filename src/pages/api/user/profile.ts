@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 
 const clientPromise = MongoClient.connect(process.env.MONGODB_URI as string);
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
 
   if (!session) {
@@ -26,3 +26,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     avatar: user.avatar || '/default-avatar.png',
   });
 };
+
+export default handler;

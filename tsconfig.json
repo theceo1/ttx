@@ -37,6 +37,6 @@
     ".next/types/**/*.ts",
     "src/**/*.ts",
     "scripts/**/*.ts"
-  ],
+, "src/utils/testMongoConnection.mjs"  ],
   "exclude": ["node_modules"]
 }

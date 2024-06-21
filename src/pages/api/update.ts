@@ -2,22 +2,17 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
-let client: MongoClient;
-
-if (!uri) {
-  throw new Error('Please add your Mongo URI to .env.local');
-}
-
 const getClient = async () => {
-  if (!client) {
-    client = new MongoClient(uri);
-    await client.connect();
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('Please add your Mongo URI to .env.local');
   }
+  const client = new MongoClient(uri);
+  await client.connect();
   return client;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
 
   if (!session) {
@@ -38,3 +33,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).json({ error: 'Failed to update user' });
   }
 };
+
+export default handler;

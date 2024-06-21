@@ -3,8 +3,6 @@ import bcrypt from 'bcryptjs';
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
-const options = {};
-
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
@@ -14,41 +12,41 @@ if (!uri) {
 
 if (process.env.NODE_ENV === 'development') {
   if (!(global as any)._mongoClientPromise) {
-    client = new MongoClient(uri, options);
+    client = new MongoClient(uri);
     (global as any)._mongoClientPromise = client.connect();
   }
   clientPromise = (global as any)._mongoClientPromise;
 } else {
-  client = new MongoClient(uri, options);
+  client = new MongoClient(uri);
   clientPromise = client.connect();
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
-  if (!email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
   try {
     const client = await clientPromise;
-    const db = client.db('trustbank');  // Ensure this matches the database name in the URI
+    const db = client.db('trustbank');
     const usersCollection = db.collection('users');
 
     const existingUser = await usersCollection.findOne({ email });
     if (existingUser) {
-      console.log('User already exists');
       return res.status(409).json({ error: 'User already exists' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
+      username,
       email,
       password: hashedPassword,
       createdAt: new Date(),
@@ -62,3 +60,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: 'Failed to register user' });
   }
 };
+
+export default handler;

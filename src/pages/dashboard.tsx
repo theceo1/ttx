@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import Link from 'next/link';
+import DashboardComponent from '@/components/Dashboard';
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Button from '@/components/ui/Button';
@@ -21,8 +22,6 @@ import {
   TableCell,
   Input,
   Select,
-  SelectTrigger,
-  SelectContent,
   SelectItem,
 } from '@/components/ui';
 import { fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat } from '../services/cryptoService';
@@ -43,7 +42,7 @@ interface MarketData {
 }
 
 const Dashboard = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [balance, setBalance] = useState<number | null>(null);
   const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
   const [marketData, setMarketData] = useState<MarketData[]>([]);
@@ -100,6 +99,14 @@ const Dashboard = () => {
       }
     }
   };
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    return <div>You must be logged in to view this page.</div>;
+  }
 
   return (
     <div className={`flex flex-col h-screen ${userPreferences.theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
@@ -187,33 +194,23 @@ const Dashboard = () => {
             <CardContent className="card-content">
               <div className="grid gap-2 mt-4">
                 <label htmlFor="cryptoCoin" className="text-sm">Select Crypto Currency</label>
-                <Select value={cryptoCoin} onValueChange={setCryptoCoin}>
-                  <SelectTrigger className="w-full">
-                    <span>{cryptoCoin ? cryptoCoin : 'Select Coin'}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
-                    <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
-                    <SelectItem value="USDC">USDC</SelectItem>
-                  </SelectContent>
+                <Select value={cryptoCoin} onChange={(e: ChangeEvent<HTMLSelectElement>) => setCryptoCoin(e.target.value)}>
+                  <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
+                  <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
+                  <SelectItem value="USDC">USDC</SelectItem>
                 </Select>
               </div>
               <div className="grid gap-2 mt-4">
                 <label htmlFor="fiatCurrency" className="text-sm">Select Fiat Currency</label>
-                <Select value={fiatCurrency} onValueChange={setFiatCurrency}>
-                  <SelectTrigger className="w-full">
-                    <span>{fiatCurrency ? fiatCurrency : 'Select Fiat Currency'}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="USD">USD</SelectItem>
-                    <SelectItem value="EUR">EUR</SelectItem>
-                    <SelectItem value="GBP">GBP</SelectItem>
-                  </SelectContent>
+                <Select value={fiatCurrency} onChange={(e: ChangeEvent<HTMLSelectElement>) => setFiatCurrency(e.target.value)}>
+                  <SelectItem value="USD">USD</SelectItem>
+                  <SelectItem value="EUR">EUR</SelectItem>
+                  <SelectItem value="GBP">GBP</SelectItem>
                 </Select>
               </div>
               <div className="grid gap-2 mt-4">
                 <label htmlFor="btcValue" className="text-sm">Amount</label>
-                <Input id="btcValue" type="number" value={btcValue !== null ? btcValue.toString() : ''} onChange={(e) => setBtcValue(parseFloat(e.target.value) || null)} placeholder="Enter amount" />
+                <Input id="btcValue" type="number" value={btcValue !== null ? btcValue.toString() : ''} onChange={(e: ChangeEvent<HTMLInputElement>) => setBtcValue(parseFloat(e.target.value) || null)} placeholder="Enter amount" />
               </div>
               <Button className="button-black mt-4 hover:bg-teal-500 rounded-full border-none" onClick={handleBtcToFiat}>Convert</Button>
               {fiatValue && (

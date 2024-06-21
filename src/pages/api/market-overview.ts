@@ -1,9 +1,25 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json([
-    { name: 'Bitcoin', symbol: 'BTC', price: 56789.00, change: 2.5, marketCap: '1.2T' },
-    { name: 'Ethereum', symbol: 'ETH', price: 1789.00, change: -1.2, marketCap: '210B' },
-    { name: 'USDC', symbol: 'USDC', price: 1.00, change: 0.1, marketCap: '55B' },
-  ]);
-}
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  try {
+    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+      params: {
+        vs_currency: 'usd',
+        order: 'market_cap_desc',
+        per_page: 10,
+        page: 1,
+        sparkline: false,
+      },
+    });
+    res.status(200).json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export default handler;

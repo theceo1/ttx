@@ -1,26 +1,23 @@
-// scripts/testMongoConnection.ts
-import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
+import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-dotenv.config();
+// Load environment variables from .env.local file
+dotenv.config({ path: '.env.local' });
 
 const uri = process.env.MONGODB_URI;
-
 if (!uri) {
   throw new Error("Please add your Mongo URI to .env.local");
 }
 
-const client = new MongoClient(uri);
-
-async function run() {
+async function testMongoConnection() {
   try {
+    const client = new MongoClient(uri as string);
     await client.connect();
-    console.log("Connected successfully to MongoDB");
-  } catch (err) {
-    console.error("MongoDB connection error:", err);
-  } finally {
+    console.log("Connected to MongoDB");
     await client.close();
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
   }
 }
 
-run().catch(console.dir);
+testMongoConnection();

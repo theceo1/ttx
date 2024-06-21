@@ -1,9 +1,8 @@
-// src/pages/trade.tsx
-import React, { useState } from 'react';
-import { Flex, Box, VStack, HStack, Heading } from '@chakra-ui/react';
+import React, { useState, ChangeEvent } from 'react';
+import { Flex, Box, Heading } from '@chakra-ui/react';
 import Button from '@/components/ui/Button';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select';
-import { Input } from '@/components/ui/Input';
+import { Select, SelectItem } from '@/components/ui/Select';
+import  Input  from '@/components/ui/Input';
 import Header from '@/components/Header';
 
 const TradePage: React.FC = () => {
@@ -18,11 +17,11 @@ const TradePage: React.FC = () => {
     console.log(`Selling ${amount} of ${coin}`);
   };
 
-  const handleCoinChange = (value: string) => {
-    setCoin(value);
+  const handleCoinChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCoin(e.target.value);
   };
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
   };
 
@@ -53,14 +52,9 @@ const TradePage: React.FC = () => {
                   value={coin}
                   onChange={handleCoinChange}
                 >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select Coin" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
-                    <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
-                    <SelectItem value="USDC">USDC</SelectItem>
-                  </SelectContent>
+                  <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
+                  <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
+                  <SelectItem value="USDC">USDC</SelectItem>
                 </Select>
               </div>
               <div className="grid gap-2">

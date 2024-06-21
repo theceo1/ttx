@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSession, getSession } from 'next-auth/react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import { Button, Input, Switch, Select, SelectItem } from '@/components/ui';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
@@ -17,11 +17,11 @@ const Settings = () => {
 
   useEffect(() => {
     if (session?.user) {
-      setUserData({
-        ...userData,
+      setUserData((prevUserData) => ({
+        ...prevUserData,
         name: session.user.name || '',
         email: session.user.email || '',
-      });
+      }));
     }
   }, [session]);
 
@@ -38,6 +38,10 @@ const Settings = () => {
     }
   };
 
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setUserData({ ...userData, theme: e.target.value });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
       <Card className="w-full max-w-md">
@@ -52,7 +56,6 @@ const Settings = () => {
               </label>
               <Input
                 id="name"
-                name="name"
                 type="text"
                 required
                 placeholder="Name"
@@ -67,7 +70,6 @@ const Settings = () => {
               </label>
               <Input
                 id="email"
-                name="email"
                 type="email"
                 required
                 placeholder="Email"
@@ -94,7 +96,7 @@ const Settings = () => {
               <Select
                 id="theme"
                 value={userData.theme}
-                onChange={(e) => setUserData({ ...userData, theme: e.target.value })}
+                onChange={handleSelectChange}
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
               >
                 <SelectItem value="light">Light</SelectItem>

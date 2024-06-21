@@ -30,11 +30,11 @@ const options = {
   responsive: true,
   scales: {
     x: {
-      type: 'category',
+      type: 'category' as const,
       beginAtZero: true,
     },
     y: {
-      type: 'linear',
+      type: 'linear' as const,
       beginAtZero: true,
     },
   },

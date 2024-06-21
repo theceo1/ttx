@@ -1,3 +1,5 @@
+// src/components/AccountBalance.tsx
+
 import React, { useEffect, useState } from 'react';
 import { fetchAccountBalance } from '../utils/api';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
@@ -15,13 +17,13 @@ const AccountBalance: React.FC = () => {
   }, []);
 
   return (
-    <Card className="card bg-teal-600 text-white">
-      <CardHeader>
-        <CardTitle>Account Balance</CardTitle>
+    <Card className="card card-account-balance">
+      <CardHeader className="card-header">
+        <CardTitle className="card-title">Account Balance</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex justify-between items-center">
-          <div>
+      <CardContent className="card-content">
+        <div className="flex flex-col sm:flex-row justify-between items-center">
+          <div className="mb-4 sm:mb-0">
             <div className="text-4xl font-bold">${balance !== null ? balance.toFixed(2) : 'Loading...'}</div>
             <div className="text-xs">≈ 1.23 BTC</div>
           </div>

@@ -111,3 +111,10 @@
 .button:hover {
   @apply hover:bg-teal-500;
 }
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .responsive-grid {
+    @apply grid-cols-1;
+  }
+}

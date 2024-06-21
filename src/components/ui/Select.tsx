@@ -1,56 +1,39 @@
-import React, { ReactNode } from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface SelectProps {
+  id?: string;
   value: string;
-  onValueChange: (value: string) => void;
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
   children: React.ReactNode;
 }
 
-export const Select: React.FC<SelectProps> = ({ value, onValueChange, className, children }) => (
-  <select className={`select ${className}`} value={value} onChange={(e) => onValueChange(e.target.value)}>
-    {children}
-  </select>
-);
-
-interface SelectTriggerProps {
-  className?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-}
-
-export const SelectTrigger: React.FC<SelectTriggerProps> = ({ className, onClick, children }) => (
-  <div className={`select-trigger ${className}`} onClick={onClick}>
-    {children}
-  </div>
-);
-
-interface SelectContentProps {
-  className?: string;
-  children: React.ReactNode;
-}
-
-export const SelectContent: React.FC<SelectContentProps> = ({ className, children }) => (
-  <div className={`select-content ${className}`}>{children}</div>
-);
+export const Select: React.FC<SelectProps> = ({ id, value, onChange, className, children }) => {
+  return (
+    <select id={id} value={value} onChange={onChange} className={className}>
+      {children}
+    </select>
+  );
+};
 
 interface SelectItemProps {
   value: string;
-  className?: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export const SelectItem: React.FC<SelectItemProps> = ({ value, className, children }) => (
-  <option className={`select-item ${className}`} value={value}>
-    {children}
-  </option>
+export const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => {
+  return (
+    <option value={value}>
+      {children}
+    </option>
+  );
+};
+
+// Dummy components to fulfill the missing exports
+export const SelectTrigger: React.FC<{ children: React.ReactNode, className?: string }> = ({ children, className }) => (
+  <div className={className}>{children}</div>
 );
 
-interface SelectValueProps {
-  className?: string;
-  children: ReactNode;
-}
-
-export const SelectValue: React.FC<SelectValueProps> = ({ className, children }) => (
-  <div className={`select-value ${className}`}>{children}</div>
+export const SelectContent: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div>{children}</div>
 );

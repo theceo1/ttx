@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface AvatarProps {
   className?: string;
@@ -15,11 +16,12 @@ interface AvatarImageProps {
 }
 
 export const AvatarImage: React.FC<AvatarImageProps> = ({ src, className }) => (
-  <img src={src} className={`avatar-image ${className}`} alt="Avatar" />
+  <Image src={src} className={`avatar-image ${className}`} alt="Avatar" />
 );
 
 interface AvatarFallbackProps {
   className?: string;
+  children: React.ReactNode;
 }
 
 export const AvatarFallback: React.FC<AvatarFallbackProps> = ({ className, children }) => (

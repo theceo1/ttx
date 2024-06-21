@@ -1,45 +1,76 @@
 import React, { useState } from 'react';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select';
-import Input from '@/components/ui/Input';
+import { Flex, Box, Heading } from '@chakra-ui/react';
 import Button from '@/components/ui/Button';
+import { Select, SelectItem } from '@/components/ui/Select';
+import  Input  from '@/components/ui/Input';
 
 const TradeSection: React.FC = () => {
   const [coin, setCoin] = useState('BTC');
   const [amount, setAmount] = useState('');
 
-  const handleTrade = () => {
-    // Implement trade logic here
+  const handleBuy = () => {
+    console.log(`Buying ${amount} of ${coin}`);
+  };
+
+  const handleSell = () => {
+    console.log(`Selling ${amount} of ${coin}`);
+  };
+
+  const handleCoinChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCoin(e.target.value);
+  };
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(e.target.value);
   };
 
   return (
-    <div className="trade-section p-4 bg-white shadow rounded-lg">
-      <div className="grid grid-cols-2 gap-4">
-        <Button variant="outline" size="sm" className="hover:bg-teal-500">
-          Buy
-        </Button>
-        <Button variant="outline" size="sm" className="hover:bg-teal-500">
-          Sell
-        </Button>
-      </div>
-      <div className="grid gap-2 mt-4">
-        <label htmlFor="coin" className="text-sm">Coin</label>
-        <Select value={coin} onValueChange={setCoin}>
-          <SelectTrigger className="w-full">
-            {coin ? <SelectValue>{coin}</SelectValue> : <span className="text-gray-500">Select Coin</span>}
-          </SelectTrigger>
-          <SelectContent>
+    <Box>
+      <Heading as="h3" size="lg" mb={4}>
+        Trade Cryptocurrencies
+      </Heading>
+      <div className="grid gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          <Button variant="outline" size="sm" onClick={handleBuy}>
+            Buy
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleSell}>
+            Sell
+          </Button>
+        </div>
+        <div className="grid gap-2">
+          <label htmlFor="coin" className="text-sm">
+            Coin
+          </label>
+          <Select
+            id="coin"
+            value={coin}
+            onChange={handleCoinChange}
+            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+          >
             <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
             <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
             <SelectItem value="USDC">USDC</SelectItem>
-          </SelectContent>
-        </Select>
+          </Select>
+        </div>
+        <div className="grid gap-2">
+          <label htmlFor="amount" className="text-sm">
+            Amount
+          </label>
+          <Input
+            id="amount"
+            type="number"
+            placeholder="Enter amount"
+            value={amount}
+            onChange={handleAmountChange}
+            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+          />
+        </div>
+        <Button size="sm" onClick={handleBuy} className="bg-teal-600 text-white mt-4">
+          Place Order
+        </Button>
       </div>
-      <div className="grid gap-2 mt-4">
-        <label htmlFor="amount" className="text-sm">Amount</label>
-        <Input id="amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" />
-      </div>
-      <Button className="mt-4 bg-teal-500 text-white hover:bg-teal-600" onClick={handleTrade}>Place Order</Button>
-    </div>
+    </Box>
   );
 };
 

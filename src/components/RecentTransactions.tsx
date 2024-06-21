@@ -1,3 +1,5 @@
+// src/components/RecentTransactions.tsx
+
 import React from 'react';
 import { useGlobalState } from '@/context/GlobalState';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
@@ -7,14 +9,14 @@ const RecentTransactions: React.FC = () => {
   const { recentTransactions } = useGlobalState();
 
   return (
-    <Card className="card bg-white text-black">
-      <CardHeader>
-        <CardTitle>Recent Transactions</CardTitle>
+    <Card className="card card-recent-transactions">
+      <CardHeader className="card-header">
+        <CardTitle className="card-title">Recent Transactions</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="card-content">
         <div className="grid gap-2">
           {recentTransactions.map((transaction, index) => (
-            <div className="flex items-center justify-between" key={index}>
+            <div className="flex flex-col sm:flex-row items-center justify-between" key={index}>
               <div className="flex items-center gap-2">
                 <Avatar className="w-8 h-8 border">
                   <AvatarImage src="/placeholder-user.jpg" />
