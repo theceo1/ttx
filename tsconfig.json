@@ -24,6 +24,7 @@
       "@/context/*": ["src/context/*"],
       "@/lib/*": ["src/lib/*"]
     },
+    "types": ["node", "jest", "@testing-library/jest-dom"], // Add this line
     "plugins": [
       {
         "name": "next"
@@ -36,7 +37,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/**/*.ts",
-    "scripts/**/*.ts"
-, "src/utils/testMongoConnection.mjs"  ],
+    "scripts/**/*.ts",
+    "src/utils/testMongoConnection.mjs"
+  ],
   "exclude": ["node_modules"]
 }

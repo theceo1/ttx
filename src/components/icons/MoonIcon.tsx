@@ -1,4 +1,10 @@
-function MoonIcon(props) {
+import React, { SVGProps } from 'react';
+
+interface MoonIconProps extends SVGProps<SVGSVGElement> {
+  // Add any additional props specific to the MoonIcon component
+}
+
+function MoonIcon(props: MoonIconProps) {
   return (
     <svg
       {...props}
@@ -14,7 +20,7 @@ function MoonIcon(props) {
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
-  )
+  );
 }
 
 export default MoonIcon;

@@ -1,4 +1,6 @@
-function TrendingDownIcon(props) {
+import React from 'react';
+
+function TrendingDownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -12,10 +14,11 @@ function TrendingDownIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />
-      <polyline points="16 17 22 17 22 11" />
+      <polyline points="22 3 22 17 13.5 13.5" />
+      <polyline points="22 17 13.5 13.5 8.5 13.5" />
     </svg>
   )
 }
 
 export default TrendingDownIcon;
+

@@ -1,4 +1,4 @@
-function FilterIcon(props) {
+function FilterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

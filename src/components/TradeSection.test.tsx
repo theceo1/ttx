@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TradeSection from './TradeSection';
-import '@testing-library/jest-dom'; // Ensure this is imported
+import '@testing-library/jest-dom';
 
 test('renders trade section with buy and sell buttons', () => {
   render(<TradeSection />);
-  
+
   const buyButton = screen.getByText(/Buy/i);
   const sellButton = screen.getByText(/Sell/i);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Notifications from './Notifications';
-import '@testing-library/jest-dom'; // Ensure this is imported
+import '@testing-library/jest-dom';
 import axios from 'axios';
 
 jest.mock('axios');

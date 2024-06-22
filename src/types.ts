@@ -1,4 +1,5 @@
 export interface CustomUser {
+    image: string;
     id: string;
     name: string;
     email: string;

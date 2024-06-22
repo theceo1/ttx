@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import RecentTransactions from './RecentTransactions';
-import { GlobalProvider } from '@/context/GlobalState'; //
-import '@testing-library/jest-dom'; // Ensure this is imported
+import { GlobalProvider } from '@/context/GlobalState';
+import '@testing-library/jest-dom';
 
 jest.mock('@/context/GlobalState', () => ({
   useGlobalState: () => ({
@@ -19,7 +19,7 @@ test('renders recent transactions', () => {
       <RecentTransactions />
     </GlobalProvider>
   );
-  
+
   const transactions = screen.getAllByText(/(Bought|Sold)/);
   expect(transactions[0]).toBeInTheDocument();
   expect(transactions[1]).toBeInTheDocument();

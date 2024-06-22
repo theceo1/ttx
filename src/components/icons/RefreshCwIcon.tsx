@@ -1,4 +1,4 @@
-function RefreshCwIcon(props) {
+function RefreshCwIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
