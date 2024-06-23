@@ -5,7 +5,10 @@ interface AvatarFallbackProps {
   children?: React.ReactNode;
 }
 
-const AvatarFallback: React.FC<AvatarFallbackProps> = ({ className, children }) => {
+const AvatarFallback: React.FC<AvatarFallbackProps> = ({
+  className,
+  children,
+}) => {
   return <div className={`avatar-fallback ${className}`}>{children}</div>;
 };
 

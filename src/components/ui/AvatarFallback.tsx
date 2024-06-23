@@ -5,12 +5,11 @@ interface AvatarFallbackProps {
   className?: string;
 }
 
-const AvatarFallback: React.FC<AvatarFallbackProps> = ({ children, className }) => {
-  return (
-    <div className={`avatar-fallback ${className}`}>
-      {children}
-    </div>
-  );
+const AvatarFallback: React.FC<AvatarFallbackProps> = ({
+  children,
+  className,
+}) => {
+  return <div className={`avatar-fallback ${className}`}>{children}</div>;
 };
 
 export default AvatarFallback;

@@ -31,6 +31,8 @@ export const fetchMarketOverview = async (): Promise<MarketData[]> => {
 };
 
 export const fetchBtcToFiat = async (btcAmount: number): Promise<string> => {
-  const response = await axios.get('/api/btc-to-fiat', { params: { btcAmount } });
+  const response = await axios.get('/api/btc-to-fiat', {
+    params: { btcAmount },
+  });
   return response.data.fiatValue;
 };

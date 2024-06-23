@@ -6,8 +6,16 @@ interface DropdownMenuTriggerProps {
   children?: React.ReactNode;
 }
 
-const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({ className, onClick, children }) => {
-  return <button className={`dropdown-menu-trigger ${className}`} onClick={onClick}>{children}</button>;
+const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({
+  className,
+  onClick,
+  children,
+}) => {
+  return (
+    <button className={`dropdown-menu-trigger ${className}`} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
 
 export default DropdownMenuTrigger;

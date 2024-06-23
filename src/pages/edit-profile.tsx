@@ -41,7 +41,9 @@ const EditProfile: React.FC = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Edit Profile</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center">
+          Edit Profile
+        </h2>
         {error && <p className="text-red-500 text-center">{error}</p>}
         <form onSubmit={handleUpdate}>
           <input

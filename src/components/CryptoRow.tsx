@@ -14,7 +14,16 @@ interface CryptoRowProps {
   marketCap: string;
 }
 
-const CryptoRow = ({ iconSrc, fallbackText, name, symbol, price, change, changeClass, marketCap }: CryptoRowProps) => {
+const CryptoRow = ({
+  iconSrc,
+  fallbackText,
+  name,
+  symbol,
+  price,
+  change,
+  changeClass,
+  marketCap,
+}: CryptoRowProps) => {
   return (
     <TableRow>
       <TableCell>
@@ -25,7 +34,9 @@ const CryptoRow = ({ iconSrc, fallbackText, name, symbol, price, change, changeC
           </Avatar>
           <div>
             <div className="font-medium text-sm">{name}</div>
-            <div className="text-gray-500 dark:text-gray-400 text-xs">{symbol}</div>
+            <div className="text-gray-500 dark:text-gray-400 text-xs">
+              {symbol}
+            </div>
           </div>
         </div>
       </TableCell>

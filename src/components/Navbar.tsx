@@ -17,13 +17,19 @@ const Navbar: React.FC = () => {
         {session ? (
           <>
             <Link href="/transactions" legacyBehavior>
-              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">Transactions</a>
+              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">
+                Transactions
+              </a>
             </Link>
             <Link href="/profile" legacyBehavior>
-              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">Profile</a>
+              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">
+                Profile
+              </a>
             </Link>
             <Link href="/trade-history" legacyBehavior>
-              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">Trade History</a>
+              <a className="py-2 px-4 text-teal-500 hover:text-teal-700">
+                Trade History
+              </a>
             </Link>
             <button
               onClick={() => signOut()}
@@ -34,7 +40,9 @@ const Navbar: React.FC = () => {
           </>
         ) : (
           <Link href="/login" legacyBehavior>
-            <a className="py-2 px-4 bg-teal-500 text-white rounded-lg hover:bg-teal-600">Login</a>
+            <a className="py-2 px-4 bg-teal-500 text-white rounded-lg hover:bg-teal-600">
+              Login
+            </a>
           </Link>
         )}
       </div>

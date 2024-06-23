@@ -20,4 +20,6 @@ export const DropdownMenuItem = ({ children }: DropdownMenuProps) => (
   <div className="dropdown-menu-item">{children}</div>
 );
 
-export const DropdownMenuSeparator = () => <div className="dropdown-menu-separator" />;
+export const DropdownMenuSeparator = () => (
+  <div className="dropdown-menu-separator" />
+);

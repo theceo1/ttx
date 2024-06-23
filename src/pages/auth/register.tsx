@@ -46,7 +46,13 @@ const Register = () => {
   return (
     <div className="min-h-screen flex">
       <div className="w-1/2 bg-teal-600 flex flex-col justify-start items-center text-white p-8 relative">
-        <Image src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" width={320} height={320} />
+        <Image
+          src="/credit-card.png"
+          alt="Credit Card"
+          className="absolute top-20 left-40 w-80 h-80"
+          width={320}
+          height={320}
+        />
         <div className="mt-64 text-center z-10">
           <h2 className="text-4xl font-bold mb-2">trustBank</h2>
           <p className="text-lg mb-4 text-center">SPEND | EARN | TRADE</p>
@@ -58,7 +64,8 @@ const Register = () => {
           </ul>
           <p className="text-base italic text-center">
             Want to be the first to know when we launch the trustCard?
-            <br />Subscribe to our waiting list now! It&apos;s FREE.
+            <br />
+            Subscribe to our waiting list now! It&apos;s FREE.
           </p>
           <div className="mt-4 flex flex-col items-center">
             <Input
@@ -76,9 +83,13 @@ const Register = () => {
             >
               Subscribe
             </Button>
-            {subscribeMessage && <p className="mt-2 text-sm">{subscribeMessage}</p>}
+            {subscribeMessage && (
+              <p className="mt-2 text-sm">{subscribeMessage}</p>
+            )}
           </div>
-          <span className="text-sm text-gray-300 italic font-light mt-8">Powered by trustBank</span>
+          <span className="text-sm text-gray-300 italic font-light mt-8">
+            Powered by trustBank
+          </span>
         </div>
       </div>
       <div className="w-1/2 flex items-center justify-center p-8">

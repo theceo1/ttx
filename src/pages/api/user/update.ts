@@ -22,7 +22,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, email } = req.body;
 
   try {
-    await usersCollection.updateOne({ email: session.user.email }, { $set: { name, email } });
+    await usersCollection.updateOne(
+      { email: session.user.email },
+      { $set: { name, email } },
+    );
     res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Failed to update user' });

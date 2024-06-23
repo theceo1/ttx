@@ -24,7 +24,12 @@ import {
   Select,
   SelectItem,
 } from '@/components/ui';
-import { fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat } from '../services/cryptoService';
+import {
+  fetchAccountBalance,
+  fetchRecentTransactions,
+  fetchMarketOverview,
+  fetchBtcToFiat,
+} from '../services/cryptoService';
 
 interface Transaction {
   id: number;
@@ -44,7 +49,9 @@ interface MarketData {
 const Dashboard = () => {
   const { data: session, status } = useSession();
   const [balance, setBalance] = useState<number | null>(null);
-  const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
+  const [recentTransactions, setRecentTransactions] = useState<Transaction[]>(
+    [],
+  );
   const [marketData, setMarketData] = useState<MarketData[]>([]);
   const [btcValue, setBtcValue] = useState<number | null>(null);
   const [fiatValue, setFiatValue] = useState<string>('');
@@ -109,47 +116,46 @@ const Dashboard = () => {
   }
 
   return (
-    <div className={`flex flex-col h-screen ${userPreferences.theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+    <div
+      className={`flex flex-col h-screen ${userPreferences.theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}
+    >
       <header className="bg-black text-white py-4 px-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" prefetch={false} legacyBehavior>
-            <a className="text-2xl font-bold">
-              trustBank
-            </a>
+            <a className="text-2xl font-bold">trustBank</a>
           </Link>
           <nav className="hidden md:flex items-center gap-4">
             <Link href="/trade" prefetch={false} legacyBehavior>
-              <a className="hover:text-teal-500">
-                Trade
-              </a>
+              <a className="hover:text-teal-500">Trade</a>
             </Link>
             <Link href="/earn" prefetch={false} legacyBehavior>
-              <a className="hover:text-teal-500">
-                Earn
-              </a>
+              <a className="hover:text-teal-500">Earn</a>
             </Link>
             <Link href="/wallet" prefetch={false} legacyBehavior>
-              <a className="hover:text-teal-500">
-                Wallet
-              </a>
+              <a className="hover:text-teal-500">Wallet</a>
             </Link>
             <Link href="/markets" prefetch={false} legacyBehavior>
-              <a className="hover:text-teal-500">
-                Markets
-              </a>
+              <a className="hover:text-teal-500">Markets</a>
             </Link>
             <Link href="/vision" prefetch={false} legacyBehavior>
-              <a className="hover:text-teal-500">
-                Vision
-              </a>
+              <a className="hover:text-teal-500">Vision</a>
             </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" className="hover:bg-teal-500 rounded-full border-none">
+          <Button
+            variant="outline"
+            size="sm"
+            className="hover:bg-teal-500 rounded-full border-none"
+          >
             Sign In
           </Button>
-          <Button size="sm" className="hover:bg-teal-500 rounded-full border-none">Sign Up</Button>
+          <Button
+            size="sm"
+            className="hover:bg-teal-500 rounded-full border-none"
+          >
+            Sign Up
+          </Button>
         </div>
       </header>
       <main className="flex-1 grid grid-cols-1 md:grid-cols-[300px_1fr] gap-4 p-4">
@@ -163,10 +169,16 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent className="card-content flex items-center justify-between">
               <div>
-                <div className="text-4xl font-bold">${balance !== null ? balance.toFixed(2) : 'Loading...'}</div>
+                <div className="text-4xl font-bold">
+                  ${balance !== null ? balance.toFixed(2) : 'Loading...'}
+                </div>
                 <div className="text-xs">≈ 1.23 BTC</div>
               </div>
-              <Button variant="outline" size="md" className="button-black hover:bg-teal-500 absolute -right-4 -bottom-2 rounded-full border-none">
+              <Button
+                variant="outline"
+                size="md"
+                className="button-black hover:bg-teal-500 absolute -right-4 -bottom-2 rounded-full border-none"
+              >
                 Deposit
               </Button>
             </CardContent>
@@ -178,21 +190,35 @@ const Dashboard = () => {
             <CardContent className="card-content">
               <div className="grid gap-2">
                 {recentTransactions.map((transaction) => (
-                  <div className="flex items-center justify-between" key={transaction.id}>
+                  <div
+                    className="flex items-center justify-between"
+                    key={transaction.id}
+                  >
                     <div className="flex items-center gap-2">
                       <Avatar className="avatar">
-                        <AvatarImage className="avatar-image" src="/placeholder-user.jpg" />
-                        <AvatarFallback className="avatar-fallback">{transaction.coin}</AvatarFallback>
+                        <AvatarImage
+                          className="avatar-image"
+                          src="/placeholder-user.jpg"
+                        />
+                        <AvatarFallback className="avatar-fallback">
+                          {transaction.coin}
+                        </AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="font-medium text-sm">{transaction.coin}</div>
+                        <div className="font-medium text-sm">
+                          {transaction.coin}
+                        </div>
                         <div className="text-xs">
-                          {transaction.type} {transaction.amount} {transaction.coin}
+                          {transaction.type} {transaction.amount}{' '}
+                          {transaction.coin}
                         </div>
                       </div>
                     </div>
-                    <div className={`font-medium text-sm ${transaction.type === 'Bought' ? 'text-green-500' : 'text-red-500'}`}>
-                      {transaction.type === 'Bought' ? '+' : '-'}${transaction.value.toFixed(2)}
+                    <div
+                      className={`font-medium text-sm ${transaction.type === 'Bought' ? 'text-green-500' : 'text-red-500'}`}
+                    >
+                      {transaction.type === 'Bought' ? '+' : '-'}$
+                      {transaction.value.toFixed(2)}
                     </div>
                   </div>
                 ))}
@@ -201,34 +227,67 @@ const Dashboard = () => {
           </Card>
           <Card className="card card-btc-fiat-converter">
             <CardHeader className="card-header">
-              <CardTitle className="card-title text-teal-500">Calculator</CardTitle>
+              <CardTitle className="card-title text-teal-500">
+                Calculator
+              </CardTitle>
             </CardHeader>
             <CardContent className="card-content">
               <div className="grid gap-2 mt-4">
-                <label htmlFor="cryptoCoin" className="text-sm">Select Crypto Currency</label>
-                <Select value={cryptoCoin} onChange={(e: ChangeEvent<HTMLSelectElement>) => setCryptoCoin(e.target.value)}>
+                <label htmlFor="cryptoCoin" className="text-sm">
+                  Select Crypto Currency
+                </label>
+                <Select
+                  value={cryptoCoin}
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setCryptoCoin(e.target.value)
+                  }
+                >
                   <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
                   <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
                   <SelectItem value="USDC">USDC</SelectItem>
                 </Select>
               </div>
               <div className="grid gap-2 mt-4">
-                <label htmlFor="fiatCurrency" className="text-sm">Select Fiat Currency</label>
-                <Select value={fiatCurrency} onChange={(e: ChangeEvent<HTMLSelectElement>) => setFiatCurrency(e.target.value)}>
+                <label htmlFor="fiatCurrency" className="text-sm">
+                  Select Fiat Currency
+                </label>
+                <Select
+                  value={fiatCurrency}
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setFiatCurrency(e.target.value)
+                  }
+                >
                   <SelectItem value="USD">USD</SelectItem>
                   <SelectItem value="EUR">EUR</SelectItem>
                   <SelectItem value="GBP">GBP</SelectItem>
                 </Select>
               </div>
               <div className="grid gap-2 mt-4">
-                <label htmlFor="btcValue" className="text-sm">Amount</label>
-                <Input id="btcValue" type="number" value={btcValue !== null ? btcValue.toString() : ''} onChange={(e: ChangeEvent<HTMLInputElement>) => setBtcValue(parseFloat(e.target.value) || null)} placeholder="Enter amount" />
+                <label htmlFor="btcValue" className="text-sm">
+                  Amount
+                </label>
+                <Input
+                  id="btcValue"
+                  type="number"
+                  value={btcValue !== null ? btcValue.toString() : ''}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setBtcValue(parseFloat(e.target.value) || null)
+                  }
+                  placeholder="Enter amount"
+                />
               </div>
-              <Button className="button-black mt-4 hover:bg-teal-500 rounded-full border-none" onClick={handleBtcToFiat}>Convert</Button>
+              <Button
+                className="button-black mt-4 hover:bg-teal-500 rounded-full border-none"
+                onClick={handleBtcToFiat}
+              >
+                Convert
+              </Button>
               {fiatValue && (
                 <div className="mt-4">
                   <div className="text-lg font-semibold">Converted Value:</div>
-                  <div className="text-2xl">{fiatValue} {fiatCurrency}</div>
+                  <div className="text-2xl">
+                    {fiatValue} {fiatCurrency}
+                  </div>
                 </div>
               )}
             </CardContent>
@@ -238,10 +297,18 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <h2 className="text-3xl font-bold">Market Overview</h2>
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" className="hover:bg-teal-500 rounded-full border-none">
+              <Button
+                variant="outline"
+                size="sm"
+                className="hover:bg-teal-500 rounded-full border-none"
+              >
                 <RefreshCwIcon className="w-4 h-4" />
               </Button>
-              <Button variant="outline" size="sm" className="hover:bg-teal-500 rounded-full border-none">
+              <Button
+                variant="outline"
+                size="sm"
+                className="hover:bg-teal-500 rounded-full border-none"
+              >
                 <FilterIcon className="w-4 h-4" />
               </Button>
             </div>
@@ -264,19 +331,29 @@ const Dashboard = () => {
                   {marketData.map((data) => (
                     <TableRow className="table-row" key={data.coin}>
                       <TableCell className="table-cell">{data.coin}</TableCell>
-                      <TableCell className="table-cell">${data.price.toFixed(2)}</TableCell>
-                      <TableCell className={`table-cell ${data.change > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                      <TableCell className="table-cell">
+                        ${data.price.toFixed(2)}
+                      </TableCell>
+                      <TableCell
+                        className={`table-cell ${data.change > 0 ? 'text-green-500' : 'text-red-500'}`}
+                      >
                         {data.change > 0 ? '+' : ''}
                         {data.change.toFixed(2)}%
                       </TableCell>
-                      <TableCell className="table-cell">${data.marketCap.toFixed(2)}</TableCell>
+                      <TableCell className="table-cell">
+                        ${data.marketCap.toFixed(2)}
+                      </TableCell>
                     </TableRow>
                   ))}
                   <TableRow className="table-row">
                     <TableCell className="table-cell">USDT</TableCell>
                     <TableCell className="table-cell">$1.00</TableCell>
-                    <TableCell className="table-cell text-gray-500">0.00%</TableCell>
-                    <TableCell className="table-cell">$65,000,000,000</TableCell>
+                    <TableCell className="table-cell text-gray-500">
+                      0.00%
+                    </TableCell>
+                    <TableCell className="table-cell">
+                      $65,000,000,000
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

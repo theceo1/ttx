@@ -24,10 +24,16 @@ const AccountBalance: React.FC = () => {
       <CardContent className="card-content">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="mb-4 sm:mb-0">
-            <div className="text-4xl font-bold">${balance !== null ? balance.toFixed(2) : 'Loading...'}</div>
+            <div className="text-4xl font-bold">
+              ${balance !== null ? balance.toFixed(2) : 'Loading...'}
+            </div>
             <div className="text-xs">≈ 1.23 BTC</div>
           </div>
-          <Button variant="outline" size="sm" className="text-white border-white">
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-white border-white"
+          >
             Deposit
           </Button>
         </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 
-const DropdownMenuSeparator: React.FC<{ className?: string }> = ({ className }) => {
+const DropdownMenuSeparator: React.FC<{ className?: string }> = ({
+  className,
+}) => {
   return <div className={`dropdown-menu-separator ${className}`} />;
 };
 

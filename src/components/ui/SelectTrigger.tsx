@@ -7,8 +7,16 @@ interface SelectTriggerProps {
   onClick?: () => void;
 }
 
-const SelectTrigger: React.FC<SelectTriggerProps> = ({ className, children, value }) => {
-  return <div className={`select-trigger ${className}`} data-value={value}>{children}</div>;
+const SelectTrigger: React.FC<SelectTriggerProps> = ({
+  className,
+  children,
+  value,
+}) => {
+  return (
+    <div className={`select-trigger ${className}`} data-value={value}>
+      {children}
+    </div>
+  );
 };
 
 export default SelectTrigger;

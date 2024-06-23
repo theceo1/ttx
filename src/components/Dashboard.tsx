@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat } from '../utils/api';
+import {
+  fetchAccountBalance,
+  fetchRecentTransactions,
+  fetchMarketOverview,
+  fetchBtcToFiat,
+} from '../utils/api';
 
 type Transaction = {
   id: number;
@@ -53,7 +58,8 @@ const Dashboard: React.FC = () => {
           <ul>
             {transactions.map((transaction) => (
               <li key={transaction.id}>
-                {transaction.type} {transaction.coin} - {transaction.amount} @ ${transaction.value}
+                {transaction.type} {transaction.coin} - {transaction.amount} @ $
+                {transaction.value}
               </li>
             ))}
           </ul>
@@ -67,7 +73,8 @@ const Dashboard: React.FC = () => {
           <ul>
             {marketData.map((data, index) => (
               <li key={index}>
-                {data.coin}: ${data.price} ({data.change}%) - Market Cap: ${data.marketCap}
+                {data.coin}: ${data.price} ({data.change}%) - Market Cap: $
+                {data.marketCap}
               </li>
             ))}
           </ul>

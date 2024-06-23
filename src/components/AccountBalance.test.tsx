@@ -9,5 +9,7 @@ jest.mock('../utils/api', () => ({
 
 test('renders account balance', async () => {
   render(<AccountBalance />);
-  await waitFor(() => expect(screen.getByText('$12345.67')).toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.getByText('$12345.67')).toBeInTheDocument(),
+  );
 });

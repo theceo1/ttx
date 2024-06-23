@@ -24,7 +24,10 @@ const Wallet: React.FC = () => {
 
   const handleAction = async (action: 'deposit' | 'withdraw') => {
     try {
-      const response = await axios.post('/api/wallet', { amount: parseFloat(amount), action });
+      const response = await axios.post('/api/wallet', {
+        amount: parseFloat(amount),
+        action,
+      });
       setMessage(response.data.message);
       setBalance(response.data.newBalance);
     } catch (error) {
@@ -37,16 +40,36 @@ const Wallet: React.FC = () => {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Wallet</h2>
         <div>
-          <span className="text-xl font-bold">${balance !== null ? balance.toFixed(2) : 'Loading...'}</span>
+          <span className="text-xl font-bold">
+            ${balance !== null ? balance.toFixed(2) : 'Loading...'}
+          </span>
         </div>
       </div>
       <div className="grid gap-2 mt-4">
-        <label htmlFor="amount" className="text-sm">Amount</label>
-        <Input id="amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" />
+        <label htmlFor="amount" className="text-sm">
+          Amount
+        </label>
+        <Input
+          id="amount"
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Enter amount"
+        />
       </div>
       <div className="grid grid-cols-2 gap-4 mt-4">
-        <Button className="bg-teal-500 text-white hover:bg-teal-600" onClick={() => handleAction('deposit')}>Deposit</Button>
-        <Button className="bg-red-500 text-white hover:bg-red-600" onClick={() => handleAction('withdraw')}>Withdraw</Button>
+        <Button
+          className="bg-teal-500 text-white hover:bg-teal-600"
+          onClick={() => handleAction('deposit')}
+        >
+          Deposit
+        </Button>
+        <Button
+          className="bg-red-500 text-white hover:bg-red-600"
+          onClick={() => handleAction('withdraw')}
+        >
+          Withdraw
+        </Button>
       </div>
       {message && <p className="mt-4 text-center text-red-500">{message}</p>}
     </div>

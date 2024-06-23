@@ -1,21 +1,23 @@
 import React, { ChangeEvent } from 'react';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/Table';
-import { Label } from '@/components/ui/Label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select';
-import  Input  from '@/components/ui/Input';
-import { MoonIcon, RefreshCwIcon, FilterIcon, TrendingUpIcon, TrendingDownIcon, CoinsIcon } from '@/components/icons';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/Select';
 
-// Fix implicit 'any' type
 const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
   console.log(e.target.value);
 };
 
-// Use the correct props for DropdownMenu
-const DropdownMenu = ({ children, asChild }: { children: React.ReactNode, asChild?: boolean }) => (
-  <div>{children}</div>
-);
+const DropdownMenu = ({
+  children,
+}: {
+  children: React.ReactNode;
+  asChild?: boolean;
+}) => <div>{children}</div>;
 
-// Example usage of Select component
 const ComponentExample = () => {
   return (
     <div>

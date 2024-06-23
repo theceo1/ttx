@@ -17,8 +17,7 @@ function TrendingDownIcon(props: React.SVGProps<SVGSVGElement>) {
       <polyline points="22 3 22 17 13.5 13.5" />
       <polyline points="22 17 13.5 13.5 8.5 13.5" />
     </svg>
-  )
+  );
 }
 
 export default TrendingDownIcon;
-

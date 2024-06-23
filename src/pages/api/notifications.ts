@@ -24,7 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db('trustbank');
     const notificationsCollection = db.collection('notifications');
 
-    const notifications = await notificationsCollection.find({ email: session.user.email }).toArray();
+    const notifications = await notificationsCollection
+      .find({ email: session.user.email })
+      .toArray();
 
     res.status(200).json(notifications);
   } catch (error) {

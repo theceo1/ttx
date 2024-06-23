@@ -9,12 +9,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const response = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-      params: {
-        ids: 'bitcoin',
-        vs_currencies: fiatCurrency as string,
+    const response = await axios.get(
+      'https://api.coingecko.com/api/v3/simple/price',
+      {
+        params: {
+          ids: 'bitcoin',
+          vs_currencies: fiatCurrency as string,
+        },
       },
-    });
+    );
 
     const price = response.data.bitcoin[fiatCurrency as string];
     const convertedValue = parseFloat(btcAmount as string) * price;

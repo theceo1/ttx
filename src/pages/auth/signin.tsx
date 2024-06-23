@@ -41,7 +41,7 @@ const SignInPage = () => {
       } else {
         router.push(result?.url || '/dashboard');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Sign in failed:', error);
       setError('Sign in failed');
     }
@@ -60,16 +60,27 @@ const SignInPage = () => {
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white justify-center items-center">
-        <Image src="/credit-card.png" alt="Credit Card" className="absolute top-20 left-40 w-80 h-80" width={320} height={320} />
+        <Image
+          src="/credit-card.png"
+          alt="Credit Card"
+          className="absolute top-20 left-40 w-80 h-80"
+          width={320}
+          height={320}
+        />
         <div className="max-w-lg text-center space-y-4">
           <h2 className="text-4xl font-bold mb-2">trustBank</h2>
           <ul>
-            <li>A crypto card that lets you SPEND | EARN | TRADE in real time.</li>
-            <br />Pay for food, Ride, Bills with our crypto to fiat debit card, all on the go.
+            <li>
+              A crypto card that lets you SPEND | EARN | TRADE in real time.
+            </li>
+            <br />
+            Pay for food, Ride, Bills with our crypto to fiat debit card, all on
+            the go.
           </ul>
           <p className="text-base italic text-center">
             Want to be the first to know when we launch the trustCard?
-            <br />Subscribe to our waiting list now! It&apos;s FREE.
+            <br />
+            Subscribe to our waiting list now! It&apos;s FREE.
           </p>
           <div className="mt-4 flex flex-col items-center">
             <Input
@@ -87,7 +98,9 @@ const SignInPage = () => {
             >
               Subscribe
             </Button>
-            {subscribeMessage && <p className="mt-2 text-sm">{subscribeMessage}</p>}
+            {subscribeMessage && (
+              <p className="mt-2 text-sm">{subscribeMessage}</p>
+            )}
           </div>
         </div>
       </div>
@@ -99,7 +112,10 @@ const SignInPage = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email
                 </label>
                 <Input
@@ -112,7 +128,10 @@ const SignInPage = () => {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <Input
@@ -125,7 +144,10 @@ const SignInPage = () => {
                 />
               </div>
               {error && <div className="text-red-500 text-sm">{error}</div>}
-              <Button type="submit" className="w-full bg-teal-600 text-white py-2 rounded-md">
+              <Button
+                type="submit"
+                className="w-full bg-teal-600 text-white py-2 rounded-md"
+              >
                 Sign In
               </Button>
               <Button
@@ -139,9 +161,7 @@ const SignInPage = () => {
             <p className="mt-6 text-center text-sm text-gray-600">
               Don&apos;t have an account?{' '}
               <Link href="/auth/register" legacyBehavior>
-                <a className="text-teal-500 font-medium">
-                  Register
-                </a>
+                <a className="text-teal-500 font-medium">Register</a>
               </Link>
             </p>
           </CardContent>

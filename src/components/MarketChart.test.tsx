@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'; // Ensure this is imported
 
 test('renders market chart', () => {
   const { container } = render(<MarketChart />);
-  
+
   const canvas = container.querySelector('canvas');
   expect(canvas).toBeInTheDocument();
 });

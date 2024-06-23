@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Flex, Box, Heading } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import Button from '@/components/ui/Button';
 import { Select, SelectItem } from '@/components/ui/Select';
-import  Input  from '@/components/ui/Input';
+import Input from '@/components/ui/Input';
 
 const TradeSection: React.FC = () => {
   const [coin, setCoin] = useState('BTC');
@@ -66,7 +66,11 @@ const TradeSection: React.FC = () => {
             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
           />
         </div>
-        <Button size="sm" onClick={handleBuy} className="bg-teal-600 text-white mt-4">
+        <Button
+          size="sm"
+          onClick={handleBuy}
+          className="bg-teal-600 text-white mt-4"
+        >
           Place Order
         </Button>
       </div>

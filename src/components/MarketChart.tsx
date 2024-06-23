@@ -11,7 +11,15 @@ import {
   Legend,
 } from 'chart.js';
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

@@ -24,6 +24,7 @@ interface AvatarFallbackProps {
   children: React.ReactNode;
 }
 
-export const AvatarFallback: React.FC<AvatarFallbackProps> = ({ className, children }) => (
-  <div className={`avatar-fallback ${className}`}>{children}</div>
-);
+export const AvatarFallback: React.FC<AvatarFallbackProps> = ({
+  className,
+  children,
+}) => <div className={`avatar-fallback ${className}`}>{children}</div>;

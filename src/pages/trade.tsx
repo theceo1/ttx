@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { Flex, Box, Heading } from '@chakra-ui/react';
 import Button from '@/components/ui/Button';
 import { Select, SelectItem } from '@/components/ui/Select';
-import  Input  from '@/components/ui/Input';
+import Input from '@/components/ui/Input';
 import Header from '@/components/Header';
 
 const TradePage: React.FC = () => {
@@ -30,7 +30,14 @@ const TradePage: React.FC = () => {
       <Header />
       <Flex direction="column" p={4} flex="1" bg="gray.50">
         <Flex width="100%" maxW="1200px" mx="auto" flex="1" gap={4}>
-          <Box flex="1" p={4} bg="white" boxShadow="md" borderRadius="md" overflowY="auto">
+          <Box
+            flex="1"
+            p={4}
+            bg="white"
+            boxShadow="md"
+            borderRadius="md"
+            overflowY="auto"
+          >
             <Heading as="h3" size="lg" mb={4}>
               Trade Cryptocurrencies
             </Heading>
@@ -47,11 +54,7 @@ const TradePage: React.FC = () => {
                 <label htmlFor="coin" className="text-sm">
                   Coin
                 </label>
-                <Select
-                  id="coin"
-                  value={coin}
-                  onChange={handleCoinChange}
-                >
+                <Select id="coin" value={coin} onChange={handleCoinChange}>
                   <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
                   <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
                   <SelectItem value="USDC">USDC</SelectItem>
@@ -69,7 +72,11 @@ const TradePage: React.FC = () => {
                   onChange={handleAmountChange}
                 />
               </div>
-              <Button size="sm" onClick={handleBuy} className="bg-teal-600 text-white mt-4">
+              <Button
+                size="sm"
+                onClick={handleBuy}
+                className="bg-teal-600 text-white mt-4"
+              >
                 Place Order
               </Button>
             </div>

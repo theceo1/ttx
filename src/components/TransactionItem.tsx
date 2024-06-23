@@ -11,7 +11,14 @@ interface TransactionItemProps {
   amountClass: string;
 }
 
-const TransactionItem = ({ iconSrc, fallbackText, title, subtitle, amount, amountClass }: TransactionItemProps) => {
+const TransactionItem = ({
+  iconSrc,
+  fallbackText,
+  title,
+  subtitle,
+  amount,
+  amountClass,
+}: TransactionItemProps) => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -21,7 +28,9 @@ const TransactionItem = ({ iconSrc, fallbackText, title, subtitle, amount, amoun
         </Avatar>
         <div>
           <div className="font-medium text-sm">{title}</div>
-          <div className="text-gray-500 dark:text-gray-400 text-xs">{subtitle}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs">
+            {subtitle}
+          </div>
         </div>
       </div>
       <div className={`${amountClass} font-medium text-sm`}>{amount}</div>

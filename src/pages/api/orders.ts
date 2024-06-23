@@ -5,7 +5,10 @@ import { MongoClient } from 'mongodb';
 const uri = 'your_mongodb_connection_string'; // Replace with your MongoDB connection string
 const client = new MongoClient(uri);
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const session = await getSession({ req });
 
   if (!session) {
@@ -18,7 +21,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const ordersCollection = db.collection('orders');
 
     if (req.method === 'GET') {
-      const orders = await ordersCollection.find({ userId: session.user.id }).toArray();
+      const orders = await ordersCollection
+        .find({ userId: session.user.id })
+        .toArray();
       res.status(200).json(orders);
     } else {
       res.status(405).json({ message: 'Method not allowed' });

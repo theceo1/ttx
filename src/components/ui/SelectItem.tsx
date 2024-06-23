@@ -6,8 +6,16 @@ interface SelectItemProps {
   children?: React.ReactNode;
 }
 
-const SelectItem: React.FC<SelectItemProps> = ({ className, value, children }) => {
-  return <div className={`select-item ${className}`} data-value={value}>{children}</div>;
+const SelectItem: React.FC<SelectItemProps> = ({
+  className,
+  value,
+  children,
+}) => {
+  return (
+    <div className={`select-item ${className}`} data-value={value}>
+      {children}
+    </div>
+  );
 };
 
 export default SelectItem;

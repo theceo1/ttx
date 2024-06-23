@@ -1,7 +1,14 @@
 import React from 'react';
 import { fetchMarketOverview } from '../utils/api';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/Table';
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from '@/components/ui/Table';
 import { useEffect, useState } from 'react';
 
 interface MarketData {
@@ -42,8 +49,13 @@ const MarketOverview: React.FC = () => {
               <TableRow key={index}>
                 <TableCell>{coin.coin}</TableCell>
                 <TableCell>${coin.price.toFixed(2)}</TableCell>
-                <TableCell className={coin.change >= 0 ? 'text-green-500' : 'text-red-500'}>
-                  {coin.change >= 0 ? '+' : ''}{coin.change}%
+                <TableCell
+                  className={
+                    coin.change >= 0 ? 'text-green-500' : 'text-red-500'
+                  }
+                >
+                  {coin.change >= 0 ? '+' : ''}
+                  {coin.change}%
                 </TableCell>
                 <TableCell>${(coin.marketCap / 1e9).toFixed(2)} B</TableCell>
               </TableRow>

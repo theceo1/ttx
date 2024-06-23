@@ -12,7 +12,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const client = await clientPromise;
     const db = client.db('trustBank');
-    const preferences = await db.collection('preferences').findOne({ userId: session.user.email });
+    const preferences = await db
+      .collection('preferences')
+      .findOne({ userId: session.user.email });
 
     if (!preferences) {
       return res.status(404).json({ message: 'Preferences not found' });

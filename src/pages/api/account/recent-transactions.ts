@@ -18,7 +18,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const client = await MongoClient.connect(uri);
     const db = client.db('trustBank');
-    const transactions = await db.collection('transactions').find({ userId: session.user.id }).toArray();
+    const transactions = await db
+      .collection('transactions')
+      .find({ userId: session.user.id })
+      .toArray();
 
     res.status(200).json(transactions);
   } catch (error) {

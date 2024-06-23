@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+interface Notification {
+  id: number;
+  message: string;
+  timestamp: string;
+}
+
 const Notifications: React.FC = () => {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -21,10 +27,12 @@ const Notifications: React.FC = () => {
     <div className="p-4 bg-white shadow rounded-lg">
       <h3 className="text-xl font-semibold mb-4">Notifications</h3>
       <ul>
-        {notifications.map((notification: any) => (
+        {notifications.map((notification) => (
           <li key={notification.id} className="mb-2 p-2 border rounded-lg">
             <span className="block text-lg">{notification.message}</span>
-            <span className="block text-gray-500">{notification.timestamp}</span>
+            <span className="block text-gray-500">
+              {notification.timestamp}
+            </span>
           </li>
         ))}
       </ul>

@@ -2,8 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 
+interface Transaction {
+  id: number;
+  type: string;
+  amount: number;
+  coin: string;
+  date: string;
+}
+
 const Transactions: React.FC = () => {
-  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -27,7 +35,9 @@ const Transactions: React.FC = () => {
         <ul>
           {transactions.map((transaction) => (
             <li key={transaction.id} className="mb-2 p-2 border rounded-lg">
-              <span className="block text-lg">{transaction.type} {transaction.amount} {transaction.coin}</span>
+              <span className="block text-lg">
+                {transaction.type} {transaction.amount} {transaction.coin}
+              </span>
               <span className="block text-gray-500">{transaction.date}</span>
             </li>
           ))}

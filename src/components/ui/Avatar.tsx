@@ -18,8 +18,20 @@ interface AvatarImageProps {
   height: number;
 }
 
-export const AvatarImage: React.FC<AvatarImageProps> = ({ src, className, alt = "Avatar", width, height }) => (
-  <Image src={src} className={`avatar-image ${className}`} alt={alt} width={width} height={height} />
+export const AvatarImage: React.FC<AvatarImageProps> = ({
+  src,
+  className,
+  alt = 'Avatar',
+  width,
+  height,
+}) => (
+  <Image
+    src={src}
+    className={`avatar-image ${className}`}
+    alt={alt}
+    width={width}
+    height={height}
+  />
 );
 
 interface AvatarFallbackProps {
@@ -27,6 +39,7 @@ interface AvatarFallbackProps {
   children: React.ReactNode;
 }
 
-export const AvatarFallback: React.FC<AvatarFallbackProps> = ({ className, children }) => (
-  <div className={`avatar-fallback ${className}`}>{children}</div>
-);
+export const AvatarFallback: React.FC<AvatarFallbackProps> = ({
+  className,
+  children,
+}) => <div className={`avatar-fallback ${className}`}>{children}</div>;

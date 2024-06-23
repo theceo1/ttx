@@ -19,7 +19,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const client = new MongoClient(uri);
     await client.connect();
     const db = client.db('trustbank');
-    const user = await db.collection('users').findOne({ email: session.user?.email });
+    const user = await db
+      .collection('users')
+      .findOne({ email: session.user?.email });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });

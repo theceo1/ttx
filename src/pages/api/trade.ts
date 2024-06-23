@@ -31,7 +31,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     client = new MongoClient(uri);
     await client.connect();
     const db = client.db('trustBank');
-    const user = await db.collection('users').findOne({ email: session.user?.email });
+    const user = await db
+      .collection('users')
+      .findOne({ email: session.user?.email });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -49,10 +51,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ error: 'Invalid action' });
     }
 
-    await db.collection('users').updateOne(
-      { email: session.user?.email },
-      { $set: { balance: newBalance } }
-    );
+    await db
+      .collection('users')
+      .updateOne(
+        { email: session.user?.email },
+        { $set: { balance: newBalance } },
+      );
 
     await db.collection('transactions').insertOne({
       userId: user._id,

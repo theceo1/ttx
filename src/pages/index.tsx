@@ -6,15 +6,29 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 
-
 // Use dynamic imports for code splitting
-const AccountBalance = dynamic(() => import('@/components/AccountBalance'), { ssr: false });
-const RecentTransactions = dynamic(() => import('@/components/RecentTransactions'), { ssr: false });
-const MarketOverview = dynamic(() => import('@/components/MarketOverview'), { ssr: false });
-const TradeSection = dynamic(() => import('@/components/TradeSection'), { ssr: false });
-const UserProfile = dynamic(() => import('@/components/UserProfile'), { ssr: false });
-const Notifications = dynamic(() => import('@/components/Notifications'), { ssr: false });
-const MarketChart = dynamic(() => import('@/components/MarketChart'), { ssr: false });
+const AccountBalance = dynamic(() => import('@/components/AccountBalance'), {
+  ssr: false,
+});
+const RecentTransactions = dynamic(
+  () => import('@/components/RecentTransactions'),
+  { ssr: false },
+);
+const MarketOverview = dynamic(() => import('@/components/MarketOverview'), {
+  ssr: false,
+});
+const TradeSection = dynamic(() => import('@/components/TradeSection'), {
+  ssr: false,
+});
+const UserProfile = dynamic(() => import('@/components/UserProfile'), {
+  ssr: false,
+});
+const Notifications = dynamic(() => import('@/components/Notifications'), {
+  ssr: false,
+});
+const MarketChart = dynamic(() => import('@/components/MarketChart'), {
+  ssr: false,
+});
 const Wallet = dynamic(() => import('@/components/Wallet'), { ssr: false });
 
 export default function Home() {
@@ -43,7 +57,12 @@ export default function Home() {
       <header className="p-4 bg-black text-white shadow-lg">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard</h1>
-          <button onClick={() => signOut()} className="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600">Logout</button>
+          <button
+            onClick={() => signOut()}
+            className="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
+          >
+            Logout
+          </button>
         </div>
       </header>
       <main className="p-4 bg-white min-h-screen">

@@ -34,11 +34,7 @@ const BtcToFiatConverter = () => {
         placeholder="Fiat Currency (e.g., usd)"
       />
       <button onClick={handleConvert}>Convert</button>
-      {convertedValue !== null && (
-        <div>
-          Converted Value: ${convertedValue}
-        </div>
-      )}
+      {convertedValue !== null && <div>Converted Value: ${convertedValue}</div>}
     </div>
   );
 };

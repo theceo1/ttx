@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
-import { Button, Input, Card, CardHeader, CardTitle, CardContent } from '@/components/ui';
+import {
+  Button,
+  Input,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from '@/components/ui';
 
 const Profile = () => {
   const { data: session, status } = useSession();
-  const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -16,7 +22,6 @@ const Profile = () => {
         const response = await axios.get('/api/profile', {
           params: { email: session.user.email },
         });
-        setUser(response.data);
         setName(response.data.name);
         setEmail(response.data.email);
       };
@@ -27,7 +32,7 @@ const Profile = () => {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/profile/update', { name, email });
+      await axios.post('/api/profile/update', { name, email });
       setMessage('Profile updated successfully');
     } catch (error) {
       setMessage('Failed to update profile');

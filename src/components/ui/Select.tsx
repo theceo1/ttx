@@ -8,7 +8,13 @@ interface SelectProps {
   children: React.ReactNode;
 }
 
-const Select: React.FC<SelectProps> = ({ id, value, onChange, className, children }) => {
+const Select: React.FC<SelectProps> = ({
+  id,
+  value,
+  onChange,
+  className,
+  children,
+}) => {
   return (
     <select id={id} value={value} onChange={onChange} className={className}>
       {children}
@@ -22,11 +28,7 @@ interface SelectItemProps {
 }
 
 const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => {
-  return (
-    <option value={value}>
-      {children}
-    </option>
-  );
+  return <option value={value}>{children}</option>;
 };
 
 interface SelectTriggerProps {
@@ -34,12 +36,11 @@ interface SelectTriggerProps {
   children: React.ReactNode;
 }
 
-const SelectTrigger: React.FC<SelectTriggerProps> = ({ className, children }) => {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
+const SelectTrigger: React.FC<SelectTriggerProps> = ({
+  className,
+  children,
+}) => {
+  return <div className={className}>{children}</div>;
 };
 
 interface SelectContentProps {
@@ -47,12 +48,11 @@ interface SelectContentProps {
   children: React.ReactNode;
 }
 
-const SelectContent: React.FC<SelectContentProps> = ({ className, children }) => {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
+const SelectContent: React.FC<SelectContentProps> = ({
+  className,
+  children,
+}) => {
+  return <div className={className}>{children}</div>;
 };
 
 interface SelectValueProps {
@@ -60,9 +60,7 @@ interface SelectValueProps {
 }
 
 const SelectValue: React.FC<SelectValueProps> = ({ placeholder }) => {
-  return (
-    <span>{placeholder}</span>
-  );
+  return <span>{placeholder}</span>;
 };
 
 export { Select, SelectItem, SelectTrigger, SelectContent, SelectValue };

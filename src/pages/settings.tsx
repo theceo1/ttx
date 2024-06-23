@@ -60,7 +60,9 @@ const Settings = () => {
                 required
                 placeholder="Name"
                 value={userData.name}
-                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+                onChange={(e) =>
+                  setUserData({ ...userData, name: e.target.value })
+                }
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
               />
             </div>
@@ -74,7 +76,9 @@ const Settings = () => {
                 required
                 placeholder="Email"
                 value={userData.email}
-                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
               />
             </div>
@@ -85,7 +89,9 @@ const Settings = () => {
               <Switch
                 id="notifications"
                 checked={userData.notifications}
-                onChange={(e) => setUserData({ ...userData, notifications: e.target.checked })}
+                onChange={(e) =>
+                  setUserData({ ...userData, notifications: e.target.checked })
+                }
                 className="focus:outline-none focus:ring-teal-500 focus:border-teal-500"
               />
             </div>

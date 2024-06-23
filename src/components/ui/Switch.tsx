@@ -8,7 +8,12 @@ interface SwitchProps {
   className?: string;
 }
 
-const Switch: React.FC<SwitchProps> = ({ id, checked, onChange, className }) => {
+const Switch: React.FC<SwitchProps> = ({
+  id,
+  checked,
+  onChange,
+  className,
+}) => {
   return (
     <label htmlFor={id} className={`switch ${className}`}>
       <input id={id} type="checkbox" checked={checked} onChange={onChange} />

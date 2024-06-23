@@ -59,10 +59,13 @@ export const fetchMarketOverview = async () => {
   }
 };
 
-export const fetchBtcToFiat = async (btcAmount: number, fiatCurrency: string) => {
+export const fetchBtcToFiat = async (
+  btcAmount: number,
+  fiatCurrency: string,
+) => {
   try {
     const response = await axios.get('/api/convert-btc-to-fiat', {
-      params: { btcAmount, fiatCurrency }
+      params: { btcAmount, fiatCurrency },
     });
     return response.data;
   } catch (error) {
@@ -71,6 +74,13 @@ export const fetchBtcToFiat = async (btcAmount: number, fiatCurrency: string) =>
   }
 };
 
-const cryptoService = { fetchCryptoData, fetchUserPortfolio, fetchAccountBalance, fetchRecentTransactions, fetchMarketOverview, fetchBtcToFiat };
+const cryptoService = {
+  fetchCryptoData,
+  fetchUserPortfolio,
+  fetchAccountBalance,
+  fetchRecentTransactions,
+  fetchMarketOverview,
+  fetchBtcToFiat,
+};
 
 export default cryptoService;

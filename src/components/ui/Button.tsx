@@ -6,9 +6,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, variant, size, className, ...props }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  variant,
+  size,
+  className,
+  ...props
+}) => {
   const baseStyles = 'py-2 px-4 rounded-md font-semibold';
-  const variantStyles = variant === 'outline' ? 'border border-teal-500 text-teal-500' : 'bg-teal-500 text-white';
+  const variantStyles =
+    variant === 'outline'
+      ? 'border border-teal-500 text-teal-500'
+      : 'bg-teal-500 text-white';
   const sizeStyles = size === 'sm' ? 'text-sm' : 'text-lg';
   const combinedStyles = `${baseStyles} ${variantStyles} ${sizeStyles} ${className}`;
 

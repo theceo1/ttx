@@ -1,18 +1,15 @@
+// src/components/RecentTransactions.test.tsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { GlobalProvider } from '../context/GlobalState';
 import RecentTransactions from './RecentTransactions';
-import '@testing-library/jest-dom';
+import { GlobalProvider } from '@/context/GlobalState';
 
-describe('RecentTransactions', () => {
-  test('renders recent transactions', () => {
-    render(
-      <GlobalProvider>
-        <RecentTransactions />
-      </GlobalProvider>
-    );
-
-    const cardTitle = screen.getByText(/Recent Transactions/i);
-    expect(cardTitle).toBeInTheDocument();
-  });
+test('displays fallback text when no transactions exist', () => {
+  render(
+    <GlobalProvider>
+      <RecentTransactions />
+    </GlobalProvider>
+  );
+  const fallbackText = screen.getByText(/No recent transactions found/i);
+  expect(fallbackText).toBeInTheDocument();
 });
