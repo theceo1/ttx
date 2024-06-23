@@ -1,5 +1,3 @@
-// src/__tests__/index.test.tsx
-
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -12,7 +10,6 @@ test('renders a heading', () => {
       <Home />
     </SessionProvider>
   );
-  console.log(document.body.innerHTML); // Debug log to see what's rendered
   const heading = screen.getByRole('heading', { name: /trustBank/i });
   expect(heading).toBeInTheDocument();
 });

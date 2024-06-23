@@ -1,5 +1,6 @@
+// src/components/TradeSection.tsx
 import React, { useState } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import { Flex, Box, Heading } from '@chakra-ui/react';
 import Button from '@/components/ui/Button';
 import { Select, SelectItem } from '@/components/ui/Select';
 import Input from '@/components/ui/Input';
@@ -7,12 +8,21 @@ import Input from '@/components/ui/Input';
 const TradeSection: React.FC = () => {
   const [coin, setCoin] = useState('BTC');
   const [amount, setAmount] = useState('');
+  const [error, setError] = useState('');
 
   const handleBuy = () => {
+    if (!amount) {
+      setError('Invalid amount entered');
+      return;
+    }
     console.log(`Buying ${amount} of ${coin}`);
   };
 
   const handleSell = () => {
+    if (!amount) {
+      setError('Invalid amount entered');
+      return;
+    }
     console.log(`Selling ${amount} of ${coin}`);
   };
 
@@ -66,6 +76,7 @@ const TradeSection: React.FC = () => {
             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
           />
         </div>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         <Button
           size="sm"
           onClick={handleBuy}

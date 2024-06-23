@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import AccountBalance from './AccountBalance';
-import '@testing-library/jest-dom'; // Ensure this is imported
+import '@testing-library/jest-dom';
 
 jest.mock('../utils/api', () => ({
   fetchAccountBalance: jest.fn().mockResolvedValue(12345.67),
