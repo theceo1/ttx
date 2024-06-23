@@ -1,8 +1,11 @@
+// src/pages/index.tsx
 import { useSession, signOut } from 'next-auth/react';
 import Head from 'next/head';
 import Layout from '@/layouts/Layout';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import React from 'react';
+
 
 // Use dynamic imports for code splitting
 const AccountBalance = dynamic(() => import('@/components/AccountBalance'), { ssr: false });
@@ -22,8 +25,9 @@ export default function Home() {
   if (!session) {
     return (
       <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-        <h1 className="text-3xl font-semibold">You are not authenticated</h1>
-        <Link href="/api/auth/signin">
+        <h1 className="text-3xl font-semibold">trustBank</h1>
+        <p> PAY | EARN | SPEND </p>
+        <Link href="/api/auth/signin" legacyBehavior>
           <a className="text-blue-500 ml-2">Login</a>
         </Link>
       </div>

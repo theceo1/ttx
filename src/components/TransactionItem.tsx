@@ -1,5 +1,5 @@
 // src/components/TransactionItem.tsx
-
+import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 
 interface TransactionItemProps {

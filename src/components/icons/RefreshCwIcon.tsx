@@ -1,3 +1,5 @@
+import React from 'react';
+
 function RefreshCwIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

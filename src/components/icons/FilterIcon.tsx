@@ -1,3 +1,5 @@
+import React from 'react';
+
 function FilterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

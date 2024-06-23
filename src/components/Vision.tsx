@@ -2,30 +2,42 @@
 import Link from "next/link";
 import Button from '@/components/ui/Button';
 import Image from "next/image";
-
+import React from 'react';
 export default function Vision() {
   return (
     <div className="flex flex-col h-screen">
       <header className="bg-gray-900 text-white py-4 px-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-2xl font-bold" prefetch={false}>
-            trustBank
+          <Link href="/" prefetch={false} legacyBehavior>
+            <a className="text-2xl font-bold">
+              trustBank
+            </a>
           </Link>
           <nav className="hidden md:flex items-center gap-4">
-            <Link href="/dashboard" className="hover:text-gray-400" prefetch={false}>
-              Trade
+            <Link href="/dashboard" prefetch={false} legacyBehavior>
+              <a className="hover:text-gray-400">
+                Trade
+              </a>
             </Link>
-            <Link href="/dashboard" className="hover:text-gray-400" prefetch={false}>
-              Earn
+            <Link href="/dashboard" prefetch={false} legacyBehavior>
+              <a className="hover:text-gray-400">
+                Earn
+              </a>
             </Link>
-            <Link href="/dashboard" className="hover:text-gray-400" prefetch={false}>
-              Wallet
+            <Link href="/dashboard" prefetch={false} legacyBehavior>
+              <a className="hover:text-gray-400">
+                Wallet
+              </a>
             </Link>
-            <Link href="/dashboard" className="hover:text-gray-400" prefetch={false}>
-              Markets
+            <Link href="/dashboard" prefetch={false} legacyBehavior>
+              <a className="hover:text-gray-400">
+                Markets
+              </a>
             </Link>
-            <Link href="/vision" className="hover:text-gray-400" prefetch={false}>
-              Vision
+            <Link href="/vision" prefetch={false} legacyBehavior>
+              <a className="hover:text-gray-400">
+                Vision
+              </a>
             </Link>
           </nav>
         </div>
@@ -44,15 +56,14 @@ export default function Vision() {
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 At trustBank, our vision is to revolutionize the way people interact with their finances. We believe
                 that everyone should have access to secure, transparent, and empowering financial tools that help them
-                achieve their goals.
+                increase economic and financial freedom.
               </p>
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-4">Empowering Individuals</h2>
               <p className="text-gray-500 dark:text-gray-400 text-lg">
-                We aim to empower individuals by providing them with the knowledge, tools, and resources they need to
-                take control of their financial future. Our platform is designed to be user-friendly and accessible,
-                making it easy for anyone to manage their money, invest, and grow their wealth.
+                Our platform is designed to be user-friendly and accessible,
+                making it easy for anyone to manage digital assets, invest, and grow their wealth.
               </p>
             </div>
             <div>

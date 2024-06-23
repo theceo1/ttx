@@ -1,4 +1,3 @@
-// src/pages/auth/signin.tsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -25,6 +24,9 @@ const SignInPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    console.log('SignIn Attempt:', { email, password });
+
     try {
       const result = await signIn('credentials', {
         redirect: false,
@@ -32,12 +34,15 @@ const SignInPage = () => {
         password,
         callbackUrl: '/dashboard',
       });
+      console.log('SignIn Result:', result);
+
       if (result?.error) {
         setError(result.error);
       } else {
         router.push(result?.url || '/dashboard');
       }
     } catch (error: any) {
+      console.error('Sign in failed:', error);
       setError('Sign in failed');
     }
   };
@@ -133,8 +138,10 @@ const SignInPage = () => {
             </form>
             <p className="mt-6 text-center text-sm text-gray-600">
               Don&apos;t have an account?{' '}
-              <Link href="/auth/register" className="text-teal-500 font-medium">
-                Register
+              <Link href="/auth/register" legacyBehavior>
+                <a className="text-teal-500 font-medium">
+                  Register
+                </a>
               </Link>
             </p>
           </CardContent>

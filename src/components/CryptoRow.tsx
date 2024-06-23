@@ -1,5 +1,5 @@
 // src/components/CryptoRow.tsx
-
+import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 import { TableRow, TableCell } from '@/components/ui/Table';
 

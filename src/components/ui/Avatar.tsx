@@ -13,10 +13,13 @@ export const Avatar: React.FC<AvatarProps> = ({ className, children }) => (
 interface AvatarImageProps {
   src: string;
   className?: string;
+  alt?: string;
+  width: number;
+  height: number;
 }
 
-export const AvatarImage: React.FC<AvatarImageProps> = ({ src, className }) => (
-  <Image src={src} className={`avatar-image ${className}`} alt="Avatar" />
+export const AvatarImage: React.FC<AvatarImageProps> = ({ src, className, alt = "Avatar", width, height }) => (
+  <Image src={src} className={`avatar-image ${className}`} alt={alt} width={width} height={height} />
 );
 
 interface AvatarFallbackProps {

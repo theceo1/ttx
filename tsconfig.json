@@ -1,44 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "jsx": "react", // Ensure this is set to "react"
     "baseUrl": ".",
     "paths": {
+      "@/pages/*": ["src/pages/*"],
       "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/lib/*": ["src/lib/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/context/*": ["src/context/*"],
-      "@/lib/*": ["src/lib/*"]
-    },
-    "types": ["node", "jest", "@testing-library/jest-dom"], // Add this line
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+      "@/layouts/*": ["src/layouts/*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/**/*.ts",
-    "scripts/**/*.ts",
-    "src/utils/testMongoConnection.mjs"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import React from 'react';
 
 const BtcToFiatConverter = () => {
   const [btcAmount, setBtcAmount] = useState<number>(0);

@@ -1,6 +1,5 @@
-// src/pages/api/auth/session.ts
+// src/pages/api/auth/signin.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import bcrypt from 'bcryptjs';
 import { MongoClient } from 'mongodb';
 
@@ -24,22 +23,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'GET') {
-    try {
-      const session = await getSession({ req });
-      if (session) {
-        return res.status(200).json(session);
-      } else {
-        return res.status(401).json({ message: 'Unauthorized' });
-      }
-    } catch (error) {
-      console.error('Error fetching session:', error);
-      return res.status(500).json({ error: 'Failed to fetch session' });
-    }
-  }
-
   if (req.method !== 'POST') {
-    res.setHeader('Allow', ['POST', 'GET']);
+    res.setHeader('Allow', ['POST']);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 

@@ -1,7 +1,5 @@
-// src/components/RecentTransactions.tsx
-
 import React from 'react';
-import { useGlobalState } from '@/context/GlobalState';
+import { useGlobalState } from '../context/GlobalState';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
 
@@ -19,7 +17,7 @@ const RecentTransactions: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between" key={index}>
               <div className="flex items-center gap-2">
                 <Avatar className="w-8 h-8 border">
-                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarImage src="/placeholder-user.jpg" width={32} height={32} />
                   <AvatarFallback>{transaction.coin}</AvatarFallback>
                 </Avatar>
                 <div>

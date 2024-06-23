@@ -1,6 +1,6 @@
+// src/pages/dashboard.tsx
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import Link from 'next/link';
-import DashboardComponent from '@/components/Dashboard';
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Button from '@/components/ui/Button';
@@ -112,24 +112,36 @@ const Dashboard = () => {
     <div className={`flex flex-col h-screen ${userPreferences.theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
       <header className="bg-black text-white py-4 px-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-2xl font-bold" prefetch={false}>
-            trustBank
+          <Link href="/" prefetch={false} legacyBehavior>
+            <a className="text-2xl font-bold">
+              trustBank
+            </a>
           </Link>
           <nav className="hidden md:flex items-center gap-4">
-            <Link href="/trade" className="hover:text-teal-500" prefetch={false}>
-              Trade
+            <Link href="/trade" prefetch={false} legacyBehavior>
+              <a className="hover:text-teal-500">
+                Trade
+              </a>
             </Link>
-            <Link href="/earn" className="hover:text-teal-500" prefetch={false}>
-              Earn
+            <Link href="/earn" prefetch={false} legacyBehavior>
+              <a className="hover:text-teal-500">
+                Earn
+              </a>
             </Link>
-            <Link href="/wallet" className="hover:text-teal-500" prefetch={false}>
-              Wallet
+            <Link href="/wallet" prefetch={false} legacyBehavior>
+              <a className="hover:text-teal-500">
+                Wallet
+              </a>
             </Link>
-            <Link href="/markets" className="hover:text-teal-500" prefetch={false}>
-              Markets
+            <Link href="/markets" prefetch={false} legacyBehavior>
+              <a className="hover:text-teal-500">
+                Markets
+              </a>
             </Link>
-            <Link href="/vision" className="hover:text-teal-500" prefetch={false}>
-              Vision
+            <Link href="/vision" prefetch={false} legacyBehavior>
+              <a className="hover:text-teal-500">
+                Vision
+              </a>
             </Link>
           </nav>
         </div>

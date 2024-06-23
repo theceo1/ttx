@@ -139,8 +139,10 @@ const Register = () => {
             </div>
             <div className="mt-6 text-center text-sm text-gray-600">
               Already have an account?{' '}
-              <Link href="/auth/signin" className="font-medium text-teal-500 hover:text-teal-800">
-                Sign In
+              <Link href="/auth/signin" legacyBehavior>
+                <a className="font-medium text-teal-500 hover:text-teal-800">
+                  Sign In
+                </a>
               </Link>
             </div>
           </CardContent>

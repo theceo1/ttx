@@ -1,3 +1,5 @@
+// src/components/TradeSection.test.tsx
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TradeSection from './TradeSection';
@@ -16,16 +18,13 @@ test('renders trade section with buy and sell buttons', () => {
 test('allows selecting coin and entering amount', () => {
   render(<TradeSection />);
 
-  const selectCoin = screen.getByText(/Select Coin/i);
-  fireEvent.click(selectCoin);
+  const selectCoin = screen.getByLabelText(/Coin/i) as HTMLSelectElement;
+  fireEvent.change(selectCoin, { target: { value: 'BTC' } });
 
-  const bitcoinOption = screen.getByText(/Bitcoin \(BTC\)/i);
-  fireEvent.click(bitcoinOption);
-
-  const amountInput = screen.getByPlaceholderText(/Enter amount/i);
+  const amountInput = screen.getByPlaceholderText(/Enter amount/i) as HTMLInputElement;
   fireEvent.change(amountInput, { target: { value: '1.5' } });
 
-  expect(amountInput).toHaveValue('1.5');
+  expect(amountInput.value).toBe('1.5');
 });
 
 test('handles trade button click', () => {
